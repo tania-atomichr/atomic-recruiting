@@ -3,6 +3,8 @@ name: opp-brief
 description: Write a role's Opportunity Brief (OB) and create it INSIDE the role's page in the Notion Open Roles DB. The OB is the candidate-facing brief that NAMES the client (unlike the anonymous public JD) — it is the single source of truth every downstream skill reads (atomic-jd anonymizes it, interview-kit derives questions from it, application-questions derives the ⌖ reality-checks, tt-post-job links it in the Scheduled-stage message). Use for role intake: when a new role lands, after a discovery/intake call, or when the user asks to write an OB / opp brief / opportunity brief / role brief for a role. Takes intake notes, a transcript, or a rough description plus company context; asks for missing critical facts instead of inventing them.
 ---
 
+> **Token resolution:** ids/urls written as `{{TOKEN}}` are org config, resolved from `~/.claude/atomic-recruiting-org.md` (created by atomic-onboarding's "set me up"; external users: see ORG.example.md in the repo). Read that file once at the start and substitute values before using any URL or id. If it's missing, run onboarding first.
+
 # opp-brief — the Opportunity Brief, written into the role's Notion page
 
 The OB is the document a candidate reads before their screening call, and the document every other skill in the pipeline treats as ground truth. It names the client, states real comp guidance, and is honest about constraints. Write it once, well, in the role's page — everything else projects from it.

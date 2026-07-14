@@ -3,6 +3,8 @@ name: application-questions
 description: Author a role's Teamtailor APPLICATION-FORM questions — reuse the 6 canonical ✪ questions by id (never rewritten) and author 2 role-specific ⌖ "reality-check" questions from the brief's core craft (each proving a different facet), then write them to the job via the internal TT API. A reality-check is one tight, open-text "what did you last use / ship / run" that a real practitioner answers in two seconds, a faker or bot can't produce, and a non-fit can honestly opt out of. Use when setting up or fixing the application/screening questions on a Teamtailor job, or when a poster needs the per-role question set. This is the APPLICATION-FORM sibling of interview-kit (which builds the interview kit) — for the short apply form, use THIS.
 ---
 
+> **Token resolution:** ids/urls written as `{{TOKEN}}` are org config, resolved from `~/.claude/atomic-recruiting-org.md` (created by atomic-onboarding's "set me up"; external users: see ORG.example.md in the repo). Read that file once at the start and substitute values before using any URL or id. If it's missing, run onboarding first.
+
 # application-questions — the apply-form question set for a role
 
 The application form has two competing jobs: stay short (every extra field costs applicants) and still extract signal + filter bots and non-fits. It solves that with a fixed canonical spine reused across every role, plus a tiny role-specific tail. This skill authors the tail and writes the whole set to the job.

@@ -3,6 +3,8 @@ name: tt-post-job
 description: Post a role to Teamtailor as a fully-configured DRAFT, autonomously carrying the Atomic pipeline. Takes the atomic-jd structured block (title, pitch, body_html, hints) plus the role's client, recruiter, and interview kit, and builds a complete TT job: it creates the job, gives it the Atomic 13-stage pipeline with its message/schedule automation (rebuilt from the "Atomic Template" job via API, since Teamtailor's Copy UI cannot be driven headlessly), sets the Client custom field, the 6 canonical application questions, locations, and the interview kit. Leaves it as a draft for review, never publishes. Use after atomic-jd (and optionally application-questions + interview-kit) when the user wants a role actually posted to / set up in Teamtailor.
 ---
 
+> **Token resolution:** ids/urls written as `{{TOKEN}}` are org config, resolved from `~/.claude/atomic-recruiting-org.md` (created by atomic-onboarding's "set me up"; external users: see ORG.example.md in the repo). Read that file once at the start and substitute values before using any URL or id. If it's missing, run onboarding first.
+
 # tt-post-job — post a role to Teamtailor as a configured draft
 
 This is the poster: it turns the content skills' output into a real, fully-configured Teamtailor job, on the Atomic pipeline, ready for a human to review and publish. It writes to live Teamtailor, so it is deliberate and it verifies everything.
