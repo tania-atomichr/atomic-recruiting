@@ -91,6 +91,10 @@ Checks your connections (API key, recruiter email, Notion, Gmail, Chrome), helps
 - **Say:** "post [role] to Teamtailor".
 - **Know:** the job lands as a **draft**. Publishing is always a human click. The recruiter on the job is a candidate-experience specialist (fetched live from TT; it asks you which), never the AM.
 
+### 5b. tt-location-rotation — keep postings fresh on the boards
+- **What it does:** every ~10 days, swaps the rotating cities on all OPEN jobs (hubs stay) so boards re-syndicate the posting. Deterministic per 10-day window, so re-runs are harmless; changes nothing but locations and verifies that after every write.
+- **Say:** "rotate the job locations" — or put it on a schedule (ask Claude to schedule "run tt-location-rotation" every 10 days).
+
 ### 6. screened-candidate-search — sourcing from the screened pool
 - **What it does:** searches all ~2,000 screened candidates in TT, classifies them into your target roles, enriches (salary, English, country, last application), ranks with a 0-10 fit and a one-line why, and delivers **one spreadsheet** (Role is a column). On request it also **injects the very best into the TT job as Sourced** candidates for you to review.
 - **Say:** "find screened candidates for [roles] at [client]" · then "add the top ones to the job".
@@ -130,6 +134,6 @@ echo $TEAMTAILOR_API_KEY                            # should print the key
 Then start a new Claude Code session. Never commit the key or send it in plain text.
 
 ## Known gaps (honest list, as of 2026-07-14)
-- **tt-location-rotation** (scheduled ~10-day city swap for board re-syndication): designed, not built.
+- ~~tt-location-rotation~~: BUILT (v1.4.0) — see skill 5b above.
 - **close** (offer letter + per-client fee/invoice) and **pipeline-report** (weekly funnel): not built.
 - Home: https://github.com/tania-atomichr/atomic-recruiting (private). The editable source of truth for the skills lives on Tania's machine in `~/.claude/skills/`; changes are synced here with a version bump.
