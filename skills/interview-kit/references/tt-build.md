@@ -3,7 +3,7 @@
 Interview kits are NOT on the public TT API. Everything here goes through the internal app API, using the recruiter's logged-in session in Chrome (Chrome MCP `javascript_tool` running `fetch` in a tab on app.teamtailor.com).
 
 ## Setup
-- Base: `https://tt.na.teamtailor.com/app/companies/7wunA6vEcQ8/api/`
+- Base: `https://tt.na.teamtailor.com/app/companies/{{TT_COMPANY_ID}}/api/`
 - Headers on EVERY request or you get 404: `{'Content-Type':'application/json','X-Requested-With':'XMLHttpRequest','X-Ember-Route':'settings.interview-kits.index'}` plus `credentials:'include'`.
 - Long batches: run as a detached async IIFE writing progress to a `window.__state` object (synchronous eval times out at 45s), poll the state object.
 
@@ -27,7 +27,7 @@ Reuse rule: same intent = reuse the existing id, even if the wording differs sli
 `{question:{type:'Question::Text', title:'…', description:'<full script incl follow-up chain>', scorecard_criterium_id:67334}}` → 201 (verified live 2026-07-07, created #212162).
 **Tags write via `tag_list` (names), NOT `tag_ids` (read-only on write, silently ignored).** After the POST, PUT the question with `tag_list:['interview kit','<client>','<role>']` — lowercase client and role tags (minting them is fine for questions per Tania 2026-07-07; reuse exact existing spellings via `GET tags?query=`). **The title stays clean — no role or client suffix in it; that's what the tags are for.** Every question carries BOTH the **skill** (`scorecard_criterium_id`: Core skills 67334 mostly, Domain 67338 for business-model probes) and its tags. When REUSING an untagged bank question, fix its skill + add the `interview kit` tag the same way (safe, verified) — but do NOT retitle or add role/client tags to reused questions that other kits share.
 
-**2. Read the Template live** — `GET interview_kits/8242` (fallback: find by `interview_kits?template=true…` name "Template"). Its `picked_questions`, `competence_order`, `scorecard_picks` are the skeleton.
+**2. Read the Template live** — `GET interview_kits/{{TT_TEMPLATE_KIT_ID}}` (fallback: find by `interview_kits?template=true…` name "Template"). Its `picked_questions`, `competence_order`, `scorecard_picks` are the skeleton.
 
 **3. Create the kit** — preferred: `POST interview_kits` with `{interview_kit:{name:'{Role} IK | {Client}', template:true, is_hidden:false, is_available_everywhere:true, picked_questions_attributes:[…skeleton rows without ids…, …new role questions…], competence_order:[…], scorecard_picks_attributes:[…from Template, without ids…]}}`.
 POST kits → 201, verified live 2026-07-07 (created kit 16753). If a session's permission layer blocks it, fallback: click **"Duplicate interview kit"** on the Template row in the UI, then PUT the duplicate with the safe recipe.
@@ -41,7 +41,7 @@ POST kits → 201, verified live 2026-07-07 (created kit 16753). If a session's 
 
 **Whole-kit coherence pass (mandatory before verifying):** read the assembled kit top to bottom as a script and check every 🧩 domain against the ★ canonicals — one home per signal. Typical dupes to resolve per kit: a role-specific scope domain vs **★ Scope of Work** (keep the domain's craft-scope, the generic ★ stays for the ownership pattern — but if they literally repeat, drop the weaker one FROM THIS KIT only); a business-model domain vs **★ Business & Customers ✳️** (the ✳️ is skippable, so overlap is tolerable — note it in the Notion page); an AI domain vs **★ Curiosity & AI** (KEEP BOTH — Tania's rule, different purposes). Never edit the Template or a ★ canonical in passing; canonical improvements are raised separately.
 
-**4. Verify twice** — GET the new kit: question count, order, scorecard picks all match intent. Then open `https://app.teamtailor.com/companies/7wunA6vEcQ8@na/settings/interview-kits/<id>/edit` and read the page: every question renders, skill-tagged ones sit under their sections.
+**4. Verify twice** — GET the new kit: question count, order, scorecard picks all match intent. Then open `https://app.teamtailor.com/companies/{{TT_COMPANY_ID}}@na/settings/interview-kits/<id>/edit` and read the page: every question renders, skill-tagged ones sit under their sections.
 
 **5. Attach to the job** — through the job's **Edit → Evaluation** tab UI (verified flow 2026-07-07): open `/jobs/<id>/edit/evaluation`, click "Select interview kit" (the dropdown opens even from a JS `.click()`; the option list renders after ~1s — scroll down if the control is below the fold and use real computer-clicks for the option), type the kit name in the search, click the kit ("Interview kit added" toast), then click **Save**. Verify server-side: `GET jobs/<id>` → `job_detail_id` → `GET job_details/<did>` shows the kit in `picked_interview_kits` AND `picked_questions` (the application form) still has its rows. Never write the attachment directly against job_details — full-replace risk on the application form.
 

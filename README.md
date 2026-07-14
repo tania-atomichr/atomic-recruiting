@@ -38,6 +38,12 @@ It ends with a short tour of what you can do. When it shows all ✅, you're read
 
 ---
 
+## Org config — why the docs say `{{TOKENS}}`
+
+This repo contains **no client names, no staff names, and no org identifiers**: skills reference those as `{{TOKENS}}` (like `{{TT_COMPANY_ID}}`), resolved at runtime from a local file the onboarding skill writes for you (`~/.claude/atomic-recruiting-org.md`). atomic✳HR teammates get the real values automatically from an internal Notion page during "set me up". Anyone else can point the framework at their own Teamtailor + Notion by filling `ORG.example.md`. Numeric record ids that appear in the reference docs (question ids, stage names) are instance-specific too — treat them as the pattern, not literal values.
+
+---
+
 ## The golden path: a new role, end to end
 
 ```

@@ -16,7 +16,7 @@ Reused across every role **by id, never rewritten**. Icon **✪**, tags `applica
 - **Salary framing** = agency framing: learn THEIR preferences to match them, not to gate against a band.
 - The old "anything else" question **#35145** was merged into interest (58122) and should be archived — do not pick it.
 
-These six are already attached to the golden template job (659646 "Atomic Template"), so a job cloned from the template inherits them. When building a job that did NOT come from the template, attach all six by id with the flags above, then add the role's ⌖.
+These six are already attached to the golden template job ({{TT_TEMPLATE_JOB_ID}} "Atomic Template"), so a job cloned from the template inherits them. When building a job that did NOT come from the template, attach all six by id with the flags above, then add the role's ⌖.
 
 ## Icons
 - **✪** = canonical baseline (these six).

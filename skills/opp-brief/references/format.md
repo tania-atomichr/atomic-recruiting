@@ -1,6 +1,6 @@
 # The OB format — the house template, section by section
 
-From the Notion template "Template Opp Brief - Role Name at Company Name" (341a97e2-3bc3-8033-929e-e8e84dd84004), with the conventions of the live gold-standard OB (a UX/UI Designer brief, Notion id 27fa97e2-3bc3-80b1-bba8-f1aca7b000d8). Each section lists the questions it MUST answer — a section that does not answer its questions is not done. Omit optional subsections you have no data for.
+From the Notion template "Template Opp Brief - Role Name at Company Name" ({{NOTION_OB_TEMPLATE}}), with the conventions of the live gold-standard OB (a UX/UI Designer brief, Notion id {{NOTION_GOLD_OB_EXAMPLE}}). Each section lists the questions it MUST answer — a section that does not answer its questions is not done. Omit optional subsections you have no data for.
 
 ## Tone checklist (the template's own, applies to every OB)
 - Explain *why* the role exists before listing tasks.

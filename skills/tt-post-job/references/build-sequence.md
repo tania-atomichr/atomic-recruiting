@@ -2,7 +2,7 @@
 
 Two API surfaces:
 - **Public REST** (`https://api.na.teamtailor.com/v1/`): job CREATE only. Header `Authorization: Token token=<KEY>` (KEY in `teamtailor_flag.py`, or `TEAMTAILOR_API_KEY`), `X-Api-Version: 20240904`, `Content-Type: application/vnd.api+json`. JSON:API shape `{data:{type,attributes,relationships}}`.
-- **Internal app API** (`https://tt.na.teamtailor.com/app/companies/7wunA6vEcQ8/api/`): everything else, from a logged-in Chrome tab. Headers `{Content-Type:application/json, X-Requested-With:XMLHttpRequest, X-Ember-Route:jobs.job.edit.index}` + `credentials:'include'`. Cross-origin fetch from an `app.teamtailor.com` tab works. Rails shape `{job:{...}}` / `{stage:{...}}` / `{trigger:{...}}`, NOT `{data}`.
+- **Internal app API** (`https://tt.na.teamtailor.com/app/companies/{{TT_COMPANY_ID}}/api/`): everything else, from a logged-in Chrome tab. Headers `{Content-Type:application/json, X-Requested-With:XMLHttpRequest, X-Ember-Route:jobs.job.edit.index}` + `credentials:'include'`. Cross-origin fetch from an `app.teamtailor.com` tab works. Rails shape `{job:{...}}` / `{stage:{...}}` / `{trigger:{...}}`, NOT `{data}`.
 
 Run steps 2-3 (stage/trigger writes) as a single detached routine; they are ~25 calls. GET after each phase and verify before moving on.
 
@@ -10,7 +10,7 @@ Run steps 2-3 (stage/trigger writes) as a single detached routine; they are ~25 
 `POST /v1/jobs` with `{data:{type:'jobs', attributes:{title, body:'<placeholder>', pitch:pitch.slice(0,200), status:'draft', 'remote-status':'fully'}, relationships:{user:{data:{type:'users',id:RECRUITER}}, department:{data:{type:'departments',id:DEPT}}, role:{data:{type:'roles',id:ROLE}}}}}` → 201, returns `data.id` = new job id. (Internal `POST jobs` → 500; do not use it to create.) The new job arrives with ~5 default stages (Inbox/Reviewing/Interview/Offered/Hired).
 
 ## 2. Swap stages (internal) — SAFE only on the brand-new job (zero candidates)
-- Read template: `GET stages?job_id=659646` → sort by `row_order`. The 13: Inbox(0), Reviewing(100000), Invitados(200000), Screening(300000), Screening Scheduled(400000), Screening Done(500000), Submit to client(600000), Submitted(650000), 1st Interview(700000), 2nd Interview(800000), Final Round(900000), Offer(1000000), Hired(1100000).
+- Read template: `GET stages?job_id={{TT_TEMPLATE_JOB_ID}}` → sort by `row_order`. The 13: Inbox(0), Reviewing(100000), Invitados(200000), Screening(300000), Screening Scheduled(400000), Screening Done(500000), Submit to client(600000), Submitted(650000), 1st Interview(700000), 2nd Interview(800000), Final Round(900000), Offer(1000000), Hired(1100000).
 - Read the new job's current stages: `GET stages?job_id=NEW` (fresh jobs have ~5 defaults: Inbox, Reviewing, Interview, Offered, Hired).
 - **LANDMINE — stage names are unique per job.** `POST stages` for a name that already exists (Inbox/Reviewing/Hired collide with the defaults) → 422. Use **reuse-or-create** (proven 2026-07-14 on both live drafts):
   - For each template stage: if a current stage with the same trimmed name exists, REUSE it and fix its position: `PUT stages/{id} {stage:{id, job_id:NEW, name, row_order:<template row_order>}}` → 200. Otherwise CREATE: `POST stages {stage:{job_id:NEW, name, row_order}}` → 201.
@@ -35,7 +35,7 @@ Run steps 2-3 (stage/trigger writes) as a single detached routine; they are ~25 
 - **LANDMINE — body/pitch:** they live on `job_detail` and the PUT full-replaces job_detail, so ALWAYS include `job_detail.body` and `job_detail.pitch` or they null (200, blank).
 - **LANDMINE — Client required:** `picked_custom_fields_attributes:[{custom_field_id:1773, field_type:'CustomField::Select', type:'CustomField::Select', name:'Client', owner_id:NEW, owner_type:'Job', value:['<optionId>'], lid:uuid()}]`. Omit it and every PUT 422s "Client can't be blank". `value` is the OPTION id, not the label.
 - **LANDMINE — full-replace nested collections:** send the COMPLETE `picked_questions_attributes` array every time. New rows use `lid:crypto.randomUUID()`; existing rows use their real `id` (read first with `GET job_details/{jobDetailId}`).
-- `location_ids` = read them live from the template (`GET jobs/659646 → job.location_ids`, the 79-city LATAM set) and reuse.
+- `location_ids` = read them live from the template (`GET jobs/{{TT_TEMPLATE_JOB_ID}} → job.location_ids`, the 79-city LATAM set) and reuse.
 - Get `job_detail_id` from `GET jobs/{NEW} → job.job_detail_id` for the kit's `job_detail_id` field.
 
 ## 5. Verify

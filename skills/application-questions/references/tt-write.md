@@ -3,7 +3,7 @@
 Questions are NOT writable on the public API (`POST /questions` → **403**). Everything here goes through the internal app API using the recruiter's logged-in Chrome session (Chrome MCP `javascript_tool` running `fetch` in a tab on `app.teamtailor.com`; cross-origin fetch to `tt.na` works with `credentials:'include'`).
 
 ## Setup
-- Base: `https://tt.na.teamtailor.com/app/companies/7wunA6vEcQ8/api/`
+- Base: `https://tt.na.teamtailor.com/app/companies/{{TT_COMPANY_ID}}/api/`
 - Headers on every request: `{'Content-Type':'application/json','X-Requested-With':'XMLHttpRequest','X-Ember-Route':'jobs.job.edit.index'}` + `credentials:'include'`.
 - Internal API returns Rails shape `{question:{...}}` / `{job_detail:{...}}`, not JSON:API `{data}`.
 

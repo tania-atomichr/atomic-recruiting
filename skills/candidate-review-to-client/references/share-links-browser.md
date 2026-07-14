@@ -20,7 +20,7 @@ send another teammate's shares to someone else's inbox.
 ## Open the share dialog directly by URL
 Navigate the MCP tab straight to the modal (saves clicking the share button):
 ```
-https://app.teamtailor.com/companies/7wunA6vEcQ8@na/jobs/<JOB_ID>/stages/candidate/<CID>?modal=%7B%22component%22%3A%22share-link%22%2C%22arg%22%3A%7B%22candidateId%22%3A%22<CID>%22%7D%7D
+https://app.teamtailor.com/companies/{{TT_COMPANY_ID}}@na/jobs/<JOB_ID>/stages/candidate/<CID>?modal=%7B%22component%22%3A%22share-link%22%2C%22arg%22%3A%7B%22candidateId%22%3A%22<CID>%22%7D%7D
 ```
 (That `modal=` param is URL-encoded `{"component":"share-link","arg":{"candidateId":"<CID>"}}`.)
 
