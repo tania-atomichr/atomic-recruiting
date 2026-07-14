@@ -3,6 +3,8 @@ name: atomic-jd
 description: Draft a public, client-anonymous job description in the atomic✳HR house style and voice from an Opportunity Brief, a Notion Open Roles page, or a rough brief. Produces both a review-ready JD and a structured block a poster skill can push to Teamtailor, LinkedIn, or job boards. Use when the user wants to write, draft, create, or rework a JD / job post / job ad for a role, or turn an OB or intake brief into a posting. Content only — it does not post anywhere.
 ---
 
+> **Token resolution:** ids/urls written as `{{TOKEN}}` are org config, resolved from `~/.claude/atomic-recruiting-org.md` (created by atomic-onboarding's "set me up"; external users: see ORG.example.md in the repo). Read that file once at the start and substitute values before using any URL or id. If it's missing, run onboarding first.
+
 # atomic-jd — write a job description in the atomic✳HR house style
 
 Turn a brief into a finished public JD: client-anonymous, in the Atomic voice, in the Atomic-JD format, ready to hand to a poster. This skill writes the content. It does not post it anywhere — posting to Teamtailor is a separate skill you compose after this one.

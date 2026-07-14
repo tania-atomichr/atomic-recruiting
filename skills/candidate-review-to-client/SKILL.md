@@ -14,6 +14,8 @@ description: >-
   candidate search/sourcing, only the review-to-client hand-off.
 ---
 
+> **Token resolution:** ids/urls written as `{{TOKEN}}` are org config, resolved from `~/.claude/atomic-recruiting-org.md` (created by atomic-onboarding's "set me up"; external users: see ORG.example.md in the repo). Read that file once at the start and substitute values before using any URL or id. If it's missing, run onboarding first.
+
 # Candidate review → client hand-off
 
 This skill turns a Teamtailor review stage full of screened candidates into a client-ready

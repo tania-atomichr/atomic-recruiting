@@ -3,6 +3,8 @@ name: interview-kit
 description: Build a role's interview kit end to end — analyze the JD/Opportunity Brief, author ONLY the role-specific Core Skills questions (reusing existing bank questions when an equivalent exists; everything canonical is reused by id), publish the kit page inside the role's page in the Notion Open Roles DB, and create the kit in Teamtailor starting from the "Template" kit. Use when the user wants an interview kit, screening script, discovery questions, or an interview guide for a role. Produces content AND does the Notion + Teamtailor writes.
 ---
 
+> **Token resolution:** ids/urls written as `{{TOKEN}}` are org config, resolved from `~/.claude/atomic-recruiting-org.md` (created by atomic-onboarding's "set me up"; external users: see ORG.example.md in the repo). Read that file once at the start and substitute values before using any URL or id. If it's missing, run onboarding first.
+
 # interview-kit — from role brief to live Teamtailor kit
 
 The standard kit is a solved problem: the 13 ★ canonical questions (intro, story, the ✳️ optionals for transitions/environments/business/education, scope, signals, curiosity & AI, motivation, logistics, wrap-up, verdict) live in the **Teamtailor bank**, pre-assembled in the kit template named **"Template"** (kit id {{TT_TEMPLATE_KIT_ID}}), every question carrying its skill, every kit selecting all 11 areas + Conclusion. The reasoning is documented in the Hub SOP ("Interview Kits: structure, canonical questions, and how to build one" — https://app.notion.com/p/{{NOTION_IK_SOP}}). This skill therefore authors **only the role-specific 🧩 Tailored Domains** and then does the assembly: a Notion page inside the role's tracker and a real kit in Teamtailor built from the live Template.
