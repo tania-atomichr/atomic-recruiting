@@ -16,7 +16,7 @@ A **draft** TT job with: the JD (title, pitch, body), the **Atomic 13-stage pipe
 - Optionally, the role's **⌖ application questions** from application-questions (attached on top of the 6 canonicals).
 
 ## Why it rebuilds the pipeline instead of duplicating the template
-The intended path was Teamtailor's "Copy job" on the golden template (job 659646 "Atomic Template"), which carries stages + triggers + questions automatically. But that Copy flow is a client-rendered Ember modal that does NOT paint in a headless automation browser, and its submit is not a replayable JSON endpoint (every guessable `jobs/{id}/copy` path returns 404). So the poster instead **reads the template live and rebuilds its pipeline via API**, which is fully verified and has a bonus: it remaps the automation to the actual role (recruiter as organizer, the role's kit, the role's stages) instead of copying the template's placeholders.
+The intended path was Teamtailor's "Copy job" on the golden template (job {{TT_TEMPLATE_JOB_ID}} "Atomic Template"), which carries stages + triggers + questions automatically. But that Copy flow is a client-rendered Ember modal that does NOT paint in a headless automation browser, and its submit is not a replayable JSON endpoint (every guessable `jobs/{id}/copy` path returns 404). So the poster instead **reads the template live and rebuilds its pipeline via API**, which is fully verified and has a bonus: it remaps the automation to the actual role (recruiter as organizer, the role's kit, the role's stages) instead of copying the template's placeholders.
 
 ## The sequence (full detail in `references/build-sequence.md`)
 1. **Create the shell** via the PUBLIC REST API (`POST /jobs`, key from teamtailor_flag.py). Internal `POST jobs` 500s; public create is the one. Returns the new job id; it comes with ~5 default stages.
@@ -32,7 +32,7 @@ After a successful post, offer the natural follow-on: **screened-candidate-searc
 - **Verify, do not trust.** After every write, GET and check counts (stages = 13, questions = 6 + ⌖, kit present, client set, body/pitch non-empty). The internal PUT full-replaces nested collections and job_detail fields, so a missing field silently nulls. `references/build-sequence.md` lists every landmine.
 - **Client is required** in every PUT or you get 422. **body and pitch live on job_detail** and null if omitted. Pitch ≤ 200 chars.
 - **Recruiter is a candidate-experience specialist, never the AM.** Fetch the user list live and ask which recruiter owns this role (recipe in `references/ids.md`); never hardcode names or ids.
-- **Read the template live** (job 659646) for stages and triggers rather than trusting hardcoded copies, so the poster follows the template if it changes.
+- **Read the template live** (job {{TT_TEMPLATE_JOB_ID}}) for stages and triggers rather than trusting hardcoded copies, so the poster follows the template if it changes.
 - **Archive, never delete** real jobs. The only deletes allowed are the fresh job's own default stages in step 2.
 
 ## Do not

@@ -1,6 +1,6 @@
 # Atomic-JD format + anonymization
 
-The house structure for a public posting, from the "Atomic JD" prompt (Notion Document Hub id `366a97e2-3bc3-8052-b243-f1a8a453b4a9`). Omit a section when there is no data for it. Do not invent metrics or names.
+The house structure for a public posting, from the "Atomic JD" prompt (Notion Document Hub id `{{NOTION_ATOMIC_JD_PROMPT}}`). Omit a section when there is no data for it. Do not invent metrics or names.
 
 ## Structure
 

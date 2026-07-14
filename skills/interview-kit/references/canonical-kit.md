@@ -1,6 +1,6 @@
 # The canonical kit skeleton (reference — source of truth is TT + the SOP)
 
-The skeleton is NOT authored by this skill. It lives in Teamtailor as the kit template named **"Template"** (kit id **8242**) and is documented in the Hub SOP: https://app.notion.com/p/396a97e23bc381cbbfdbc8fca3f19a07. At build time, always read the Template's live content from TT — this file explains the slots and where the role questions go.
+The skeleton is NOT authored by this skill. It lives in Teamtailor as the kit template named **"Template"** (kit id **{{TT_TEMPLATE_KIT_ID}}**) and is documented in the Hub SOP: https://app.notion.com/p/{{NOTION_IK_SOP}}. At build time, always read the Template's live content from TT — this file explains the slots and where the role questions go.
 
 ## The flow (as of 2026-07-07 evening, Tania-approved structure)
 1. **Intro - 2** (#70311) — safe, friendly, exploratory tone.

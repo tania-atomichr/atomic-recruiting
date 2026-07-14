@@ -21,7 +21,7 @@ By role family (median conversion):
 | Marketing | 10.6% | 9–12% |
 | CS / Support | 9.6% | 9–11% |
 
-By client (brand/appeal effect, ~6 point spread): **the per-client baseline table is internal data and lives in the Notion Document Hub page "JD conversion baselines by client (internal)" (`39da97e2-3bc3-81dd-bdbe-d8f6b488c96c`)** — fetch it when judging a JD. It is deliberately not in this repo.
+By client (brand/appeal effect, ~6 point spread): **the per-client baseline table is internal data and lives in the Notion Document Hub page "JD conversion baselines by client (internal)" (`{{NOTION_JD_BASELINES}}`)** — fetch it when judging a JD. It is deliberately not in this repo.
 
 A JD is "good" when it clears the blend of its family baseline (above) and its client baseline (the Notion table). Strong-brand clients run several points above weak-brand ones, so never judge against a single global number.
 

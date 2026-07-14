@@ -31,6 +31,12 @@ Go through these in order. For each, actually test it, then tell the user the re
    - Check: `mcp__claude-in-chrome__list_connected_browsers`. If none, or TT isn't open/logged in, flag it.
    - If missing: ask them to open Chrome with the Claude extension and log into Teamtailor (app.teamtailor.com). Do not fall back to desktop control.
 
+6. **Org config (the {{TOKENS}} file)** — the skills reference org-specific ids as `{{TOKENS}}` (see `ORG.example.md` in the repo); they resolve from `~/.claude/atomic-recruiting-org.md`.
+   - Check: does `~/.claude/atomic-recruiting-org.md` exist and contain a value for every token in ORG.example.md?
+   - If missing (atomic team): fetch the internal Notion page **"atomic-recruiting plugin — org config (internal)"** (search the Document Hub for it; requires the Notion connector from step 3) and write its token table verbatim to `~/.claude/atomic-recruiting-org.md`. Re-run this whenever Tania announces a config change.
+   - If missing (external user, no access to atomic's Notion): copy `ORG.example.md` and help them fill their own instance's values.
+   - **Resolution rule to remember (applies to every skill):** whenever a skill file contains `{{SOMETHING}}`, read the value from `~/.claude/atomic-recruiting-org.md` before using the URL/id.
+
 **Report as a checklist** so they see exactly what's ready and what to fix:
 ```
 ✅ Teamtailor API key
