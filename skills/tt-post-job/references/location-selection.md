@@ -24,5 +24,5 @@ Result shape (live example): UX Designer 661641 → São Paulo, Lima, Rio, Guada
 2. `PUT jobs/{id}` with `{job:{location_ids, job_detail:{ body, pitch, picked_custom_fields_attributes:[client row WITH its id], picked_questions_attributes:[all rows WITH ids], picked_interview_kits_attributes:[rows WITH ids] }}}`.
 3. GET-verify: location count = 14, body/pitch lengths unchanged, q count unchanged, kit + client present.
 
-## Rotation (separate skill, NOT built yet)
-`tt-location-rotation` — scheduled ~10 days: changing `location_ids` re-syndicates on boards. Reads each open job's CURRENT `location_ids` from TT (state lives in TT), keeps the hubs, swaps the rotating cast (re-run the algorithm with a varied seed, e.g. jobId + rotation counter). Optional light Notion log.
+## Rotation (built: the `tt-location-rotation` skill)
+Scheduled ~10 days: changing `location_ids` re-syndicates on boards. The rotation skill reads each open job's CURRENT `location_ids` live (state lives in TT — no memory needed), keeps the hubs, and resamples the rest with seed = `mulberry32(jobId + windowIndex)`, `windowIndex = floor(days_since_2026_01_01 / 10)` — deterministic inside a window (idempotent re-runs), fresh across windows. It shares THIS file's algorithm, HUB_NAMES, and safe-PUT recipe; maintain them here, not duplicated there.
