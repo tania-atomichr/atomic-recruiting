@@ -1,0 +1,35 @@
+{
+  "client": "ExampleClient",
+  "context": "one-line description of the client s real business, e.g. outdoor-hospitality reservation SaaS for SMB operators",
+  "geo_preference": ["LATAM"],
+  "exclude_areas": [
+    "software engineer", "developer", "backend", "frontend", "devops", "data engineer",
+    "ui designer", "ux designer", "graphic designer", "illustrator",
+    "accountant", "bookkeeper", "controller"
+  ],
+  "roles": [
+    {
+      "name": "SDR / Outbound",
+      "keywords": ["sdr", "sales development", "outbound", "prospecting", "cold call",
+                   "cold outreach", "lead generation", "bdr", "business development",
+                   "appointment setting", "top of funnel"]
+    },
+    {
+      "name": "Enterprise Account Manager",
+      "keywords": ["account manager", "account management", "customer success", "csm",
+                   "relationship manager", "lifecycle", "account executive", "renewals",
+                   "upsell", "portfolio of accounts", "strategic accounts"]
+    },
+    {
+      "name": "Senior Support Rep",
+      "keywords": ["customer support", "technical support", "support specialist",
+                   "help desk", "helpdesk", "support agent", "tier 2", "troubleshooting",
+                   "customer service", "ticketing", "zendesk"]
+    },
+    {
+      "name": "Senior Onboarding Rep",
+      "keywords": ["onboarding", "implementation", "customer onboarding", "activation",
+                   "migration", "training", "enablement", "go-live", "product adoption"]
+    }
+  ]
+}

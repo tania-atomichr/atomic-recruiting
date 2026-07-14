@@ -1,0 +1,14 @@
+{
+  "name": "atomic-recruiting",
+  "owner": {
+    "name": "atomic✳HR",
+    "email": "tania@hireatomic.com"
+  },
+  "plugins": [
+    {
+      "name": "atomic-recruiting",
+      "source": "./",
+      "description": "The atomic✳HR recruiting OS: intake → OB → JD → interview kit → application questions → Teamtailor posting → quality-gated sourcing → client hand-off."
+    }
+  ]
+}
