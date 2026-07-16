@@ -28,5 +28,10 @@ Each picked_question row:
 
 The read that shows a job's real current picks: `GET job_details/{job_detail_id}` → `picked_questions` (each with `id`, `question_id`, `mandatory`). Do NOT trust `picked_questions?job_id=X` — that filter is ignored and returns a global set.
 
+## Ordering gotchas (verified live 2026-07-14)
+- New rows' `row_order` values are reassigned by the server; to ORDER the form, do a second PUT where every row carries its real `id` and `row_order_position` (0,1,2…) — RankedModel ignores raw `row_order` on update.
+- **Qualifying questions are PINNED FIRST by Teamtailor** regardless of position — expected behavior (knockouts fail fast), don't fight it.
+- Drop a row with `{id:<rowId>, _destroy:true}`.
+
 ## 3. Verify
 `GET job_details/{job_detail_id}` and confirm: count = 6 + your ⌖, the ⌖ present with `mandatory:true`, the canonicals intact with correct flags. Never declare success on the 200 alone.
