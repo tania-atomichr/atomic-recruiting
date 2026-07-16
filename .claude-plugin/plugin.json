@@ -1,7 +1,7 @@
 {
   "name": "atomic-recruiting",
   "description": "The atomic✳HR recruiting OS: intake → OB → JD → interview kit → application questions → fully-configured Teamtailor posting → quality-gated sourcing → client hand-off. 10 skills. Supersedes atomic-hr-teamtailor.",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "author": {
     "name": "atomic✳HR",
     "email": "tania@hireatomic.com"
