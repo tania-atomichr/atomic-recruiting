@@ -28,6 +28,9 @@ Each picked_question row:
 
 The read that shows a job's real current picks: `GET job_details/{job_detail_id}` → `picked_questions` (each with `id`, `question_id`, `mandatory`). Do NOT trust `picked_questions?job_id=X` — that filter is ignored and returns a global set.
 
+## RACE LANDMINE — never chain a full-echo PUT off an immediately-post-write read
+After any PUT that touches `picked_questions_attributes`, the very next `GET job_details` can return a PARTIAL/stale set while TT finishes processing server-side. If you then echo that read into another full-replace PUT (e.g. a body update), you make the partial set REAL — questions silently vanish (lost 3 canonicals this way, live, 2026-07-14). Rules: (1) after a questions write, WAIT ~2-3s and VERIFY the count before any further job PUT; (2) verify the question count again after EVERY job-level PUT, even ones "only" touching body/title — the echo is a write.
+
 ## Ordering gotchas (verified live 2026-07-14)
 - New rows' `row_order` values are reassigned by the server; to ORDER the form, do a second PUT where every row carries its real `id` and `row_order_position` (0,1,2…) — RankedModel ignores raw `row_order` on update.
 - **Qualifying questions are PINNED FIRST by Teamtailor** regardless of position — expected behavior (knockouts fail fast), don't fight it.
