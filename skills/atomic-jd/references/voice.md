@@ -3,8 +3,10 @@
 This is the tone every JD must hit, and the checklist to scan the draft against before returning it.
 
 ## The tone
-**Confident, practical, and candidate-focused.** It reads like polished recruitment marketing, but stays grounded in concrete responsibilities and expectations. Specifically:
+**Clear, natural, and candidate-focused.** It reads like a thoughtful colleague telling you about a role over coffee, not like marketing copy and not like a template. Warm and direct, grounded in concrete responsibilities. Specifically:
 
+- **Clarity first, above every other rule in this file.** A candidate with no context should understand what the company does and what the role is on a single read. The plainest accurate word always wins. If a line needs a second read, rewrite it simpler. Every other rule below serves this one; when a rule and clarity conflict, clarity wins.
+- **Natural and conversational.** Write the way a real person would say it out loud. Use contractions (it's, you'll, doesn't, won't, you're) — they are the default here, not an exception, and their absence is the main thing that makes a JD read stiff. Mix short and longer sentences so it breathes. If a sentence sounds scripted or corporate, rewrite it. This is the tone from the [[recruiter-email-reply]] skill: a thoughtful colleague, never a template.
 - **Aspirational without hype.** Sells the impact of the role, not empty perks. No inflated adjectives standing in for a real reason to care.
 - **Direct and clear.** Short sentences, strong verbs, minimal jargon.
 - **Professional but approachable.** Credible enough for senior candidates, human enough to feel inviting.
@@ -35,6 +37,7 @@ The line to walk: punchy and marketing-forward through precision, not through ad
 ## Hard bans — scan the full draft for each of these and rewrite every hit
 
 - **Em and en dashes** (— –). None, anywhere, including the title and pitch. Use commas, periods, colons, parentheses, or restructure the sentence. Ordinary hyphens in compound words (end-to-end, multi-step, two-person) are fine.
+- **Semicolons.** Avoid them. Use a period or a comma, or split the sentence. They read formal and break the conversational flow (borrowed from [[recruiter-email-reply]]).
 - **Rule-of-three flourishes.** Three-beat lists used for rhythm or emphasis ("fast, clear, and reliable"; "map it, build it, ship it"). A literal enumeration of real items is fine (photos, video, and voice notes). The tell is emphasis, not enumeration. When in doubt, make it two items or four.
 - **Binary-contrast pivots.** "That is not X. It is Y." / "It's not X, it's Y." / any neat aphoristic flip. A plain factual clarification is allowed ("This is not a people-management role"), a rhetorical flip is not.
 - **Negative parallelism.** "No sprints to run, no engineers to manage." Rewrite as plain prose.
@@ -75,4 +78,4 @@ Lead with what the reader cares about, in language they use. The client's domain
 - Comp in our terms → comp in theirs: "$18 to $26 USD/hour" for a LATAM full-time contractor becomes "around $3,100 to $4,500 USD per month as a contractor, based on experience, at roughly 40 hours a week."
 
 ## The scan
-Before returning, read the whole draft once looking only for the bans above. Then check: pitch length ≤ 200 characters, title has an emoji, zero em/en dashes. If default mode is a rewrite request, return only the rewritten JD, with no commentary about the changes.
+Before returning, read the whole draft once looking only for the bans above. Then run the clarity pass: read each sentence and ask whether a smart outsider with no context gets it instantly; if not, rewrite it plainer. Then the natural-voice pass: read it out loud, and wherever it sounds stiff, contract it (does not → doesn't, you will → you'll, it is → it's) and simplify. Then check: pitch length ≤ 200 characters, title has an emoji, zero em/en dashes. If default mode is a rewrite request, return only the rewritten JD, with no commentary about the changes.

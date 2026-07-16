@@ -28,7 +28,7 @@ Two house elements bookend the content and are easy to forget: a **Top Bar** as 
    One or two sentences, specific to what the person will actually own and why it matters. No promotional adjectives.
 
 3. **Company Overview** (short paragraph, anonymized)
-   Open with "Our client is a …". Use only the metrics the brief provides.
+   Lead with one plain sentence that says what the company does and for whom, in words a candidate understands instantly ("Our client is a software company that helps property managers inspect properties and turn what they find into clear reports"). Then weave in the credible facts (years in market, users, volumes, funding posture) as plain statements. Do NOT open with a stack of labels ("profitable, bootstrapped U.S. B2B SaaS company") — say those things plainly, later, only if they matter to the reader. Use only the metrics the brief provides.
 
 4. **Your Role** (short paragraph, then the bullets below)
    Why the role exists and what success looks like. **Both must come from the brief's own "About the Role" and "Success Indicators" text — never invent a backstory or motivation.** Do not write things like "the flows got tangled and nobody owns them" or "fast teams build the wrong thing twice" unless the brief actually says so; that is fabricating the why. If the brief does not explain why the role exists, describe the role plainly and drop the why. This paragraph is also where cohesion lives: it should set up the "You'll" bullets, so the whole post reads as one story rather than disconnected sections.
@@ -70,7 +70,9 @@ Conversion (applications ÷ page views) is the reliable quality signal: it repro
 ## Anonymization — how to generalize without going generic
 Keep it truthful and specific on everything except identity. The house pattern (from a live anonymized posting):
 
-> Our client is a profitable, bootstrapped U.S. B2B SaaS company that has been in market for over ten years, serving property managers and field teams. [...] Scale so far is tens of thousands of active users and over 100 million inspection photos, run by a team of around 20 with roughly half in engineering and product.
+> Our client is a software company that helps property managers inspect properties and turn what they find into clear, shareable reports. They've been at it for over ten years, profitable and self-funded the whole way, and today tens of thousands of people use it, together capturing over 100 million inspection photos. The team is around 20, with roughly half in engineering and product.
+
+(Note the register: a plain sentence of what they do first, contractions used, facts spoken not stacked. The old version of this example opened "Our client is a profitable, bootstrapped U.S. B2B SaaS company…" — that label-stack reads buzzy and is no longer the pattern.)
 
 - **Drop:** the company name, product names, named integrations/partners, and any unique identifier or link that reveals who it is.
 - **Keep:** years in market, user counts, volumes, team size, funding posture (bootstrapped/profitable), the vertical, and the real nature of the work.
