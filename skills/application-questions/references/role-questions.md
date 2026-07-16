@@ -32,6 +32,16 @@ That is a version, a tool plus how it was used, a specific technique or output, 
 - **Open text.** Never a picker. A picker lets a bot click the right answer; open text is where generation shows itself (verified live: on an RN role, an open "what version" question had 47% give a real version, 23% self-admit "I haven't worked in RN", and bots paste "The resume does not specify…" verbatim — over half the field filterable from one low-friction question).
 - **2 per role.** Two sharp questions covering two different facets of the craft (e.g. the tool/version reality-check + the output/number reality-check). Never a third — the form must stay short. Drop to 1 only when the role genuinely has a single craft surface and a second question would forcibly overlap the first.
 
+## Logistics GATES (entry-level / field / on-site roles) — the one sanctioned exception
+Some roles have hard logistics requirements that are legitimately binary: a driver's license + vehicle, a background check, work authorization, physical presence in a market. These are GATES, not craft reality-checks, and they get different rules:
+- **At most 1-2 gates**, only for true knockouts, marked `is_qualifying` (TT pins qualifying questions to the top of the form — expected, good: candidates fail fast).
+- **Prefer folding a gate into an open-text ⌖ when possible**: "What vehicle would you use for your daily property visits?" (noun answer) with the license/insurance ask in the DESCRIPTION beats "Do you have a valid license and a reliable vehicle?" (banned phrasing, two anchors, yes/no).
+- A pure consent gate (background check) may stay binary — it is consent, not experience.
+- Gates NEVER replace the canonicals or the craft ⌖; they are additive.
+
+## NEVER drop canonicals when adapting a role type
+Adapting to an unusual role (US/on-site/entry-level/gig) means adjusting FLAGS and wording emphasis, not removing canonical questions. If a canonical seems irrelevant (English for a US role, portfolio for entry-level), ASK the user before dropping it — the default is all 6 attached. Hand-composing a question set without re-reading this skill is how forms drift off-spec.
+
 ## Tone (match the canonical set)
 Warm, concrete, low-friction, with an easy honest out. A real practitioner answers in seconds; a non-fit finds it easy to say "I haven't."
 
