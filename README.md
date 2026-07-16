@@ -105,6 +105,11 @@ Checks your connections (API key, recruiter email, Notion, Gmail, Chrome), helps
 - **candidate-summary** — interview transcript + CV → client-facing summary written into the TT Resume Summary field.
 - **candidate-review-to-client** — the hand-off: everyone in the review stage gets summaries, scores, share links, and a drafted client message. Say: "prep the review candidates for [client]".
 
+### 7b. recruiter-email-reply — draft email replies
+Paste an email you received (from a candidate, hiring manager, or client) and it drafts a warm, natural, low-friction reply in a recruiter's voice. **Say:** "help me reply to this" and paste the email.
+
+*(The atomic✳HR brand design system lives in the separate private repo `atomic-hr-private`, not here.)*
+
 ### 8. teamtailor-connect — the foundation
 Direct Teamtailor questions and lookups ("how many candidates do we have?", "list the open jobs"). Every other skill uses it under the hood.
 
