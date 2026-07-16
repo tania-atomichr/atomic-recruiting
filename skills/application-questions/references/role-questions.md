@@ -32,12 +32,17 @@ That is a version, a tool plus how it was used, a specific technique or output, 
 - **Open text.** Never a picker. A picker lets a bot click the right answer; open text is where generation shows itself (verified live: on an RN role, an open "what version" question had 47% give a real version, 23% self-admit "I haven't worked in RN", and bots paste "The resume does not specify…" verbatim — over half the field filterable from one low-friction question).
 - **2 per role.** Two sharp questions covering two different facets of the craft (e.g. the tool/version reality-check + the output/number reality-check). Never a third — the form must stay short. Drop to 1 only when the role genuinely has a single craft surface and a second question would forcibly overlap the first.
 
-## Logistics GATES (entry-level / field / on-site roles) — the one sanctioned exception
-Some roles have hard logistics requirements that are legitimately binary: a driver's license + vehicle, a background check, work authorization, physical presence in a market. These are GATES, not craft reality-checks, and they get different rules:
-- **At most 1-2 gates**, only for true knockouts, marked `is_qualifying` (TT pins qualifying questions to the top of the form — expected, good: candidates fail fast).
-- **Prefer folding a gate into an open-text ⌖ when possible**: "What vehicle would you use for your daily property visits?" (noun answer) with the license/insurance ask in the DESCRIPTION beats "Do you have a valid license and a reliable vehicle?" (banned phrasing, two anchors, yes/no).
-- A pure consent gate (background check) may stay binary — it is consent, not experience.
-- Gates NEVER replace the canonicals or the craft ⌖; they are additive.
+## Logistics requirements (entry-level / field / on-site roles) — ask the COMFORTABLE PROXY, verify later
+Some roles have hard logistics requirements (a car + license, a background check, work authorization, being in a market). The form still only ASKS — it never verifies. Two rules, learned live (Tania, 2026-07-14):
+
+- **Never request verification-grade personal data at apply time**: license status, insurance, documents, IDs. That reads as an interrogation and kills conversion with exactly the nervous entry-level applicants you want. Ask the 2-second comfortable proxy instead, and let the description say verification comes later:
+  - ❌ "What vehicle would you use? Include whether your license and insurance are current." (a data grab)
+  - ✅ "How would you get around for your property visits?" desc: "Most of our technicians use their own car. Nothing to send or verify now, that comes later in the process."
+- **Phrase consent as openness + the why, never as a pass/fail prediction**:
+  - ❌ "Are you able to pass a background check?" (implies suspicion, makes them self-judge)
+  - ✅ "Would you be comfortable with a standard background check later on?" desc: "You would be visiting occupied and vacant homes, so we run one before training. Nothing needed now."
+- The hard gate lives in the PROCESS (the logistics-check step after screening), not in the form. Avoid `is_qualifying` on these unless the user asks for auto-knockout — TT pins qualifying questions FIRST on the form, which makes the very first thing a candidate sees a gate (cold).
+- At most 1-2 of these per role, additive to (never replacing) the canonicals.
 
 ## NEVER drop canonicals when adapting a role type
 Adapting to an unusual role (US/on-site/entry-level/gig) means adjusting FLAGS and wording emphasis, not removing canonical questions. If a canonical seems irrelevant (English for a US role, portfolio for entry-level), ASK the user before dropping it — the default is all 6 attached. Hand-composing a question set without re-reading this skill is how forms drift off-spec.
