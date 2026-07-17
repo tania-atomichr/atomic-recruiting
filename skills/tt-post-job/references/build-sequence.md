@@ -1,11 +1,31 @@
 # tt-post-job — the exact build sequence
 
-Two API surfaces:
-- **Public REST** (`https://api.na.teamtailor.com/v1/`): job CREATE only. Header `Authorization: Token token=<KEY>` (KEY in `teamtailor_flag.py`, or `TEAMTAILOR_API_KEY`), `X-Api-Version: 20240904`, `Content-Type: application/vnd.api+json`. JSON:API shape `{data:{type,attributes,relationships}}`.
-- **Internal app API** (`https://tt.na.teamtailor.com/app/companies/{{TT_COMPANY_ID}}/api/`): everything else, from a logged-in Chrome tab. Headers `{Content-Type:application/json, X-Requested-With:XMLHttpRequest, X-Ember-Route:jobs.job.edit.index}` + `credentials:'include'`. Cross-origin fetch from an `app.teamtailor.com` tab works. Rails shape `{job:{...}}` / `{stage:{...}}` / `{trigger:{...}}`, NOT `{data}`.
+## ARCHITECTURE: COPY-FIRST (v2, 2026-07-17). The job is a COPY of the template, then per-role edits.
+The template carries everything (stages, triggers, questions, hero image, videos, reply/reject emails, hiring team, locations). Copying inherits it ALL in one call — rebuilding from zero and replicating piece-by-piece is the LEGACY fallback (kept below) and caused a long tail of missed pieces (image, videos, emails, team, stale role names). Do not use the legacy path unless the copy endpoint breaks.
 
-Run steps 2-3 (stage/trigger writes) as a single detached routine; they are ~25 calls. GET after each phase and verify before moving on.
+## 1. COPY the template (internal API, logged-in tab)
+`POST jobs/{{TT_TEMPLATE_JOB_ID}}/new_from_template` with body `{params:{job_name:"<public title>"}}` and the standard internal headers → **200**, response contains the new job. (Discovered by capturing the UI's own Copy-job call; the endpoint name is `new_from_template` — /copy, /copies, /duplicate all 404.)
+- The copy arrives with: **13 stages, 6 triggers, 6 ✪ questions, hero image, 2 videos, reply+reject emails, team members, the 79-city location set, Client="Other"**, `status:"temp"`, no kit.
+- Verify the inheritance (stage count 13, trigger count 6, q 6, videos 2, image true, reply/reject true) before proceeding.
 
+## 2. Per-role configuration (ONE full-echo PUT — all landmines below still apply)
+Set: `title` (if different), `internal_name`, `department_id`, `role_id`, `recruiter_id` (live lookup, never Tania), `remote_status`, `min_salary`/`max_salary`/`currency`/`salary_time_unit` (market-estimate range, candidate's pay unit), `location_ids` (REPLACE the 79 with the ~14 tailored, see location-selection.md), `status:'draft'` (from "temp"), and in `job_detail`: `body` + `pitch` (the JD), the **Client option** (live lookup by name), and echo questions/kits/videos/image rows WITH their ids.
+
+## 3. Per-role trigger + email EDITS (the copy inherits template texts)
+- The 3 message triggers carry `[Role]` placeholders → substitute the role title (subject + body).
+- **smart-schedule**: REWRITE `summary` + `event_description` with this role's name (old-role text hardcoded), set `organizer_id`/`user_ids` = recruiter, `interview_kit_id` = the role's kit, `proceed_stage_id` = the copy's own "Screening Scheduled" stage id (verify it points inside THIS job).
+- **Scheduled-stage message**: embed the role's Notion **OB child page** link (never the role page) + local-timezone note.
+- **reply_body / reject_body** on job_detail: substitute the role name (they carry the template-source role hardcoded).
+- survey/todo triggers: verify stage refs point inside this job; set todo assignee = recruiter.
+
+## 4. Attach the role's kit + ⌖ questions
+interview-kit skill builds/attaches the kit; application-questions adds the 2 ⌖ to the inherited 6 ✪.
+
+## 5. Verify (unchanged)
+Full GETs: 13 stages, 6 triggers (role-correct texts), q count, kit id on job AND scheduler, videos 2, image, reply/reject role-correct, team, client, locations, salary fields, status draft. Re-check q-count + body-length after every later PUT.
+
+---
+# LEGACY fallback: rebuild-from-zero (use ONLY if new_from_template breaks)
 ## 1. Create the shell (public REST)
 `POST /v1/jobs` with `{data:{type:'jobs', attributes:{title, body:'<placeholder>', pitch:pitch.slice(0,200), status:'draft', 'remote-status':'fully'}, relationships:{user:{data:{type:'users',id:RECRUITER}}, department:{data:{type:'departments',id:DEPT}}, role:{data:{type:'roles',id:ROLE}}}}}` → 201, returns `data.id` = new job id. (Internal `POST jobs` → 500; do not use it to create.) The new job arrives with ~5 default stages (Inbox/Reviewing/Interview/Offered/Hired).
 
