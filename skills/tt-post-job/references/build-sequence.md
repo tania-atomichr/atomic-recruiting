@@ -45,4 +45,5 @@ Run steps 2-3 (stage/trigger writes) as a single detached routine; they are ~25 
 
 ## Cleanup / safety
 - `DELETE jobs/{id}` works (204) but policy is ARCHIVE, not delete, for anything real. The only deletes this skill performs are the fresh job's own default stages in step 2.
+- **Archive recipe (verified live):** the internal `PUT jobs/{id} {job:{status:'archived'}}` is rejected (400), and archiving is blocked while the required Client field is empty. Two steps: (1) internal full-echo PUT setting the Client custom field, (2) public `PATCH /v1/jobs/{id}` with `{data:{type:'jobs',id,attributes:{status:'archived'}}}` -> 200. Never archive a job that has candidates without the user's explicit confirmation.
 - If a build fails midway, the half-built draft is safe to leave (it is a draft) or archive; never leave it published.
