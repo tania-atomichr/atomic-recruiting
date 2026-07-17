@@ -24,3 +24,10 @@ The OB always lives **inside the role's page** in the Open Roles DB. Never the D
 - Multi-source queries need Enterprise; query ONE data source at a time.
 - Companies live in their own DB (relation on the role row); link the existing company page, don't duplicate it.
 - After creating, the OB URL goes to: tt-post-job (the Scheduled-stage message embeds it) and interview-kit (kit instructions link it). Mention both when handing off.
+
+## THE SHARE STRUCTURE (hard rule, learned live 2026-07-16)
+The role page is INTERNAL (properties, trackers, comments, IK backup). The OB is **its own child page** and is **the ONLY page ever shared or linked to candidates**. Never:
+- link candidates (TT messages, kit instructions) to the ROLE page — it exposes trackers, counts, and the interview-kit backup;
+- nest the interview-kit page inside the OB — a public OB share exposes every subpage, leaking interview questions;
+- leave the OB inline on the role page body when it will be shared — create the dedicated OB child first and link THAT.
+Correct tree: Role page → [Opp Brief - {Role} at {Company}] (public-shareable) + [Interview Kit - {Role}...] (internal sibling).

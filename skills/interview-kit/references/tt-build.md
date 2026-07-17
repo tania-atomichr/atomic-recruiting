@@ -49,3 +49,7 @@ POST kits → 201, verified live 2026-07-07 (created kit 16753). If a session's 
 - Archive, never delete. Questions with answers must never be deleted (history references them).
 - If anything verifies wrong, STOP and restore from the GET snapshot you took before writing (always snapshot first: `window.__backup = kit` + keep it in the transcript).
 - When done, drop the kit URL and the Notion page URL in the final summary.
+
+
+## LANDMINE — editing kit `instructions` after creation can WIPE picked_questions + scorecard_picks
+Verified live 2026-07-16: a PUT changing only `instructions` (with picked_questions_attributes echoed as {id, question_id} and scorecard echoed with ids) still returned 200 and left the kit with 0 questions / 0 scorecard picks. Set `instructions` AT CREATE TIME. If you must edit later: snapshot the kit first, expect a wipe, VERIFY counts after, and be ready to restore by re-sending the full composition (template canonicals by question_id + role 🧩 + competence_order + scorecard) — restore verified working.
