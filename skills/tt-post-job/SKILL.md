@@ -9,6 +9,8 @@ description: Post a role to Teamtailor as a fully-configured DRAFT, autonomously
 
 This is the poster: it turns the content skills' output into a real, fully-configured Teamtailor job, on the Atomic pipeline, ready for a human to review and publish. It writes to live Teamtailor, so it is deliberate and it verifies everything.
 
+**Drift guard:** if you are deep in a long session and this file's rules are not verbatim in your recent context, re-read this file AND `references/build-sequence.md` before any TT write. Memory of a skill is not the skill.
+
 ## What it produces
 A **draft** TT job with: the JD (title, pitch, body), the **Atomic 13-stage pipeline and its automation triggers**, the **Client** custom field, the **6 canonical application questions**, the role's **interview kit**, the **LATAM location set**, the assigned **recruiter**, and the standard job-detail settings. Status stays `draft`. It never publishes, and it never deletes anything except stages on the brand-new job it just created.
 

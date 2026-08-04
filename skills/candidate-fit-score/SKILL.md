@@ -45,7 +45,7 @@ production data-sufficiency gate; a thin profile makes any number fabricated).
 4. **Compute the number** — write the 7 verdicts to a JSON array and run:
    ```bash
    echo '[{"label":"Core skills","status":"...","evidence":"...","evidence_type":"..."}, ...7...]' \
-     | python3 ~/.claude/skills/candidate-fit-score/scripts/compute_score.py --profile-file profile.txt
+     | python3 <skill-base>/scripts/compute_score.py --profile-file profile.txt   # <skill-base> = this skill's own directory, wherever it is installed
    ```
    (or pass a file: `compute_score.py verdicts.json --profile-file profile.txt`). This applies the
    production weights, the **critical-gate caps** (core/seniority/communication: 1 UNMET→cap 38,

@@ -19,7 +19,7 @@ In Claude (Cowork): **Customize → Plugins → Add new → From marketplace →
 ```
 tania-atomichr/atomic-recruiting
 ```
-(You need access to that private repo first — ask Tania for a GitHub invite.) This supersedes the older `atomic-hr-teamtailor` plugin; if you have that one, remove it so skills are not duplicated.
+(The repo is public — no invite needed. Only the brand kit lives in the separate private `atomic-hr-private`.) This supersedes the older `atomic-hr-teamtailor` plugin; if you have that one, remove it so skills are not duplicated.
 
 ### Step 2 — say "set me up"
 Start a chat and type **"set me up for the recruiting plugin"**. The **atomic-onboarding** skill runs a connection check and walks you through anything missing:
@@ -138,7 +138,17 @@ echo $TEAMTAILOR_API_KEY                            # should print the key
 ```
 Then start a new Claude Code session. Never commit the key or send it in plain text.
 
+## Troubleshooting — "it's forgetting the skills / inventing questions"
+
+The skills carry every rule; when output drifts (new questions minted instead of reused, bank search skipped, lean kits, wrong voice), the cause is almost always one of these:
+
+1. **A stale duplicate skill is shadowing the plugin.** If your claude.ai account (Settings → Capabilities/Skills) or an old plugin still has a skill with the same name (`interview-kit`, `candidate-summary`, ...), the session may load the OLD version, which predates the doctrine. Fix: delete the old copies wherever they're installed so the plugin's version is the only one with that name. Symptom check: ask "which interview-kit skill do you see?" — if two show up, that's the bug.
+2. **Long-session drift.** Skill rules read early get buried; late writes then run from memory. Fix: for anything multi-phase use `/role-pipeline` (each phase runs in a fresh subagent that must re-read the skill and prove it did), and for single skills just re-invoke the skill right before the write — the skills now carry a "drift guard" telling Claude to do this itself.
+3. **Stale plugin version.** In Cowork: Plugins → update `atomic-recruiting`, then START A NEW SESSION (a running session keeps the old copy). Check the version in the report against this README's changelog.
+4. **Missing org config.** If `~/.claude/atomic-recruiting-org.md` is missing, skills can't resolve ids and improvise. Fix: say "set me up for the recruiting plugin".
+
 ## Known gaps (honest list, as of 2026-07-14)
+
 - ~~tt-location-rotation~~: BUILT (v1.4.0) — see skill 5b above.
 - **close** (offer letter + per-client fee/invoice) and **pipeline-report** (weekly funnel): not built.
-- Home: https://github.com/tania-atomichr/atomic-recruiting (private). The editable source of truth for the skills lives on Tania's machine in `~/.claude/skills/`; changes are synced here with a version bump.
+- Home: https://github.com/tania-atomichr/atomic-recruiting (public methodology repo; org ids are {{TOKENS}}). The editable source of truth for the skills lives on Tania's machine in `~/.claude/skills/`; changes are synced here with a version bump.

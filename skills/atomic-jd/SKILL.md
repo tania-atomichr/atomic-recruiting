@@ -7,6 +7,8 @@ description: Draft a public, client-anonymous job description in the atomic✳HR
 
 # atomic-jd — write a job description in the atomic✳HR house style
 
+**Drift guard:** never draft from memory of the voice — `references/voice.md` and the matching gold example (`example-jd.md`, or `example-jd-entry-level.md` for entry-level/field roles) must be read in THIS conversation before drafting. If they aren't in your recent context, read them now.
+
 Turn a brief into a finished public JD: client-anonymous, in the Atomic voice, in the Atomic-JD format, ready to hand to a poster. This skill writes the content. It does not post it anywhere — posting to Teamtailor is a separate skill you compose after this one.
 
 ## Inputs (accept any)

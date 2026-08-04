@@ -7,6 +7,8 @@ description: Write a role's Opportunity Brief (OB) and create it INSIDE the role
 
 # opp-brief — the Opportunity Brief, written into the role's Notion page
 
+**Drift guard:** `references/format.md` (the 8-section template) and `references/notion-write.md` (the share-structure hard rule: the OB child page is the ONLY candidate-facing page; the IK never nests inside it) must be read in THIS conversation before writing. If they aren't in your recent context, read them now.
+
 The OB is the document a candidate reads before their screening call, and the document every other skill in the pipeline treats as ground truth. It names the client, states real comp guidance, and is honest about constraints. Write it once, well, in the role's page — everything else projects from it.
 
 ## Inputs (accept any combination)
