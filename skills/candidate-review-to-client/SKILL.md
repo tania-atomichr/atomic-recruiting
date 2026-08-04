@@ -38,8 +38,9 @@ Slack channel exists, the JD is often pasted there — but still confirm, don't 
 ## Setup (read once)
 
 - **TT API**: base `https://api.na.teamtailor.com`, headers `Authorization: Token token=<KEY>` and
-  `X-Api-Version: 20240904`. The key lives in `teamtailor_flag.py` in the recruiter's working dir
-  (`~/Claude zinspector`). Max `page[size]` is 30. Use Bash + `python3`/`requests` for all API calls.
+  `X-Api-Version: 20240904`. The key comes from env `TEAMTAILOR_API_KEY` (set by atomic-onboarding),
+  falling back to `teamtailor_flag.py` in the recruiter's working dir where that script exists.
+  Max `page[size]` is 30. Use Bash + `python3`/`requests` for all API calls.
 - **Browser**: uses the claude-in-chrome MCP against the recruiter's logged-in Teamtailor. Drive
   the share dialog with the **javascript_tool**, not coordinate clicks (they're flaky on this SPA).
   Full recipes in `references/share-links-browser.md`.

@@ -28,15 +28,23 @@ When one session executes many phases inline, the skill instructions read early 
 Phases 2-4 all read the OB; never let a later phase "improve" an earlier artifact silently — bounce it back to that phase instead.
 
 ## How to delegate a phase (the prompt shape)
+**Resolve the skills root FIRST (installs differ — never assume `~/.claude/skills`):** this file you are reading lives at `<skills-root>/role-pipeline/SKILL.md`. Take the directory two levels up from it as `<skills-root>` — every sibling skill lives there (`<skills-root>/<skill>/SKILL.md`). This works identically for loose installs and plugin installs on any machine. Pass ABSOLUTE paths to subagents; a subagent that guesses a path and finds nothing will improvise from memory, which is the exact failure this skill exists to prevent.
+
 Spawn with the Agent tool, one phase at a time (they share the TT browser session, so sequential, never parallel):
 ```
 You are executing ONE phase of the atomic-recruiting pipeline: <phase>.
-FIRST read ~/.claude/skills/<skill>/SKILL.md and EVERY file in its references/. Follow them exactly;
-where your instinct and the skill disagree, the skill wins. Do not touch anything outside this phase.
+FIRST load the phase skill — read <skills-root>/<skill>/SKILL.md and EVERY file in
+<skills-root>/<skill>/references/ (absolute paths above; if the Skill tool is available to you,
+invoking the skill by name is equivalent for SKILL.md, but the references still need explicit reads).
+List the files you loaded in your report. If you cannot read them, STOP and return the error —
+do NOT proceed from memory. Follow them exactly; where your instinct and the skill disagree,
+the skill wins. Do not touch anything outside this phase.
 Inputs: <role, client, OB url, ids, prior artifacts>.
-When done, return: (a) the artifact/ids/urls, (b) the checklist from role-pipeline/references/checklists.md
-section <X> with every line marked PASS/FAIL + one-line evidence, (c) anything you had to assume.
+When done, return: (a) the artifact/ids/urls, (b) the checklist from
+<skills-root>/role-pipeline/references/checklists.md section <X> with every line marked PASS/FAIL
++ one-line evidence, (c) the list of skill files you actually read, (d) anything you had to assume.
 ```
+**A phase report that omits (c) or lists fewer files than the skill's references/ contains is an automatic bounce** — treat it exactly like a checklist FAIL.
 Include the role-type flag (LATAM-remote / US-field / entry-level) in every phase prompt — the skills carry explicit rules for these; the flag stops improvisation.
 
 ## Auditing (the orchestrator's real job)

@@ -9,6 +9,14 @@ description: Author a role's Teamtailor APPLICATION-FORM questions — reuse the
 
 The application form has two competing jobs: stay short (every extra field costs applicants) and still extract signal + filter bots and non-fits. It solves that with a fixed canonical spine reused across every role, plus a tiny role-specific tail. This skill authors the tail and writes the whole set to the job.
 
+## ⛔ PRE-WRITE GATE — hard rules that survive even if you read nothing else
+These are inlined here because they get skipped when only this file is in context. No write happens until all three hold:
+1. **The 6 canonical ✪ are attached BY ID, never authored:** 75227 location · 34786 English · 35702 salary · 212587 availability · 58122 interest (optional) · 212588 show-your-work (optional). First four + your ⌖ = mandatory. If the job was copied from the template it already has all six — verify, don't re-add. (Full flags table: `references/canonical-set.md`.)
+2. **Bank search BEFORE any create — with evidence.** Internal API `GET questions?query=<craft keywords>&per_page=25` (or, if a Teamtailor MCP connector is available, its `list_questions` tool). You may not POST a new question unless the search query and its result ids appear in THIS conversation. Same intent found = reuse that id.
+3. **Full-echo on the attach PUT.** `picked_questions_attributes` is full-replace: send ALL rows (6 ✪ + ⌖, existing rows with their `id`), wait ~2-3s, then re-GET and confirm the count. (Recipe + race landmine: `references/tt-write.md`.)
+
+**Drift guard:** if you are deep in a long session and these rules are not verbatim in your recent context, re-read this file before the write step. Memory of a skill is not the skill.
+
 ## The set = 6 canonical ✪ (reused by id) + at most 1-2 role-specific ⌖
 
 - **Canonical ✪** — the 6 questions every role uses, reused **by id, never rewritten**. They own pay, logistics, English, motivation, and the generic portfolio ask. See `references/canonical-set.md` for the ids, the mandatory flags, and the scorecard mapping. You do not author these. You attach them.

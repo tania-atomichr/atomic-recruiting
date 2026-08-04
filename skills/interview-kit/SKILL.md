@@ -11,6 +11,14 @@ The standard kit is a solved problem: the 13 ★ canonical questions (intro, sto
 
 Never regenerate the canonical slots. Rewriting "Tell me about yourself" per role is how the bank ended up with 7 Motivations. Reuse by id, always.
 
+## ⛔ PRE-WRITE GATE — hard rules that survive even if you read nothing else
+No Teamtailor write happens until all three hold:
+1. **The kit is built FROM the live Template kit ({{TT_TEMPLATE_KIT_ID}})** — all ★/✳️ canonicals reused by id, zero regenerated, same skeleton for every role type (entry-level and field roles included; "lean" kits are forbidden).
+2. **Bank search BEFORE creating any 🧩 question — with evidence.** Internal API `GET questions?query=<topic keywords>&per_page=25` (or a Teamtailor MCP connector's `list_questions`). You may not POST a new question unless the search query and its result ids appear in THIS conversation. A sibling role's equivalent found = reuse that id.
+3. **Kit `instructions` are set at CREATE time, never edited after** — a post-create instructions PUT wipes picked_questions + scorecard (live incident 2026-07-16; restore recipe in `references/tt-build.md`).
+
+**Drift guard:** if you are deep in a long session and these rules are not verbatim in your recent context, re-read this file before the write step. Memory of a skill is not the skill.
+
 **No role type is an exception — never hand-compose a "lean" or "simplified" kit.** Entry-level, field, gig, hourly, and on-site roles use the SAME Template skeleton as everyone else (proven live: a Property Inspector gig kit, 2026-07-15). What adapts per role: the 🧩 Tailored Domains (e.g. Field Work & Reliability, Documentation & Detail, Resident Interaction instead of engineering domains), the session goals, and the NUMBERS TO CAPTURE. What never changes: the ★ canonicals by id, the section layout, the naming (`{Role} IK | {Client}`), the instructions block, and the Notion backup page. The ✳️ optional canonicals are the built-in mechanism for lighter screens — the recruiter skips them organically; you do not delete them. If a kit feels "too heavy" for a role, that is a conversation with the user, not a license to invent a new format.
 
 Work in four parts. Read the reference for each part before doing it. Order: Part 1 → Part 2 → **Part 4 (build in TT)** → **Part 3 (Notion full-text backup, written LAST** — it snapshots the finished kit's real ids, order, and live scripts). Parts are numbered by topic, not run order.
