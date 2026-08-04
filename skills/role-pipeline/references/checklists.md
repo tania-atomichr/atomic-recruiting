@@ -7,7 +7,8 @@ Each phase subagent returns its section with every line PASS/FAIL + one-line evi
 - [ ] NAMES the client (OB is not anonymous)
 - [ ] 💡 Atomic market insight callout, HOURLY for OBs
 - [ ] KSIs measurable and real (they feed the kit's NUMBERS TO CAPTURE and the ⌖ questions)
-- [ ] ⚡ Created INSIDE the role's Notion page (tracker row, or child page on fresh roles)
+- [ ] ⚡ Created INSIDE the role's Notion page, in the Tasks Tracker resolved BY NAME (the tracker is multi-source; the inline tag can hand you the blank placeholder)
+- [ ] ⚡ TEMPLATES APPLIED, not bare pages: a newly-created role row used the Open Roles `default_page_template` ("New Role" — icon + Tasks Tracker + Candidate Submissions present), and the OB row used the tracker's "Opp Brief - Role Name at Company Name" template. Blank page = redo, never hand-patch
 - [ ] Critical facts (comp, manager, hours, process, market) from intake or ASKED — every assumption flagged in a callout for the user
 - [ ] No em/en dashes; no internal-only notes if candidates will see the page
 
