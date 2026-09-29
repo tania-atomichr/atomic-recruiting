@@ -48,6 +48,7 @@ This repo contains **no client names, no staff names, and no org identifiers**: 
 
 ```
 1. opp-brief             intake call → Opportunity Brief on the role's Notion page
+   (role-page            optional: OB → full candidate landing-page copy)
 2. atomic-jd             OB → public, client-anonymous JD
 3. interview-kit         OB → interview kit in Notion + Teamtailor
 4. application-questions 6 standard questions + 2 role reality-checks
@@ -75,6 +76,11 @@ Checks your connections (API key, recruiter email, Notion, Gmail, Chrome), helps
 - **What it does:** OB → client-anonymous JD in the house voice, plus a structured block the poster consumes.
 - **Say:** "draft the JD for [role]" or point it at the role's Notion page.
 - **Know:** never names the client ("Our client is a…"), keeps the true metrics (users, years, volumes) for credibility, quotes comp as a **monthly** USD market estimate plus an invitation to share a range. Punchy and specific, no hype words, no em dashes, no About-Atomic footer (the career site adds it). Pitch must fit 200 characters.
+
+### 2b. role-page — the candidate landing page
+- **What it does:** writes a full twelve-section role page for candidates (hero, why the role exists, what you'll own, what the work feels like, company context, experience, 30/60/90 success measures, who you'll work with, hiring process, FAQs, further reading, how to apply). Outcomes-first and honest about ownership. Copy only, in chat: it doesn't build or publish a page.
+- **Say:** "write a role page for [role] at [client]" · "tighten this landing page" · "what should we call this role?" (title-only mode).
+- **Know:** unlike the JD it names the company, and it reads the OB first when one exists. It asks up to five questions (comp and setup first). If you say "go ahead", it uses visible `[placeholders]` plus an "Information to confirm" list, and it labels unvalidated 30/60/90 milestones as proposed. Same voice rules as the JD (no em dashes, no semicolons, contractions). A short job ad is still `atomic-jd`.
 
 ### 3. interview-kit — the interview kit
 - **What it does:** authors only the role-specific Core Skills questions (canonical ★ questions are reused by id, never rewritten), publishes the kit page inside the role's Notion page, and builds the kit in Teamtailor from the Template.
