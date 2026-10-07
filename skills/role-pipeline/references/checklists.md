@@ -22,10 +22,10 @@ Each phase subagent returns its section with every line PASS/FAIL + one-line evi
 - [ ] Structured block returned (title, internal_name, pitch, body_html, comp_band, region/department/role hints, emojis)
 
 ## C. interview-kit
-- [ ] ⚡ Name `{Role} IK | {Client}`; built from the LIVE Template ({{TT_TEMPLATE_KIT_ID}}): all 13 ★ canonicals reused BY ID, zero regenerated
+- [ ] ⚡ Name `{Role} IK | {Client}`; the user was asked Template (v1) vs Template v2 and the kit is built from that LIVE base kit: all its ★ canonicals (13 on v1, 12 on v2) reused BY ID, zero regenerated, no mixing of v1 and v2 canonicals
 - [ ] 🧩 domains: bank-searched first (reuse by id when same intent), discovery voice (📋 LEARNING, no "tell me about a time"), one (Scale) anchor each, script in DESCRIPTION not title
-- [ ] Core-skills section inserted after Attitude, before Education; scorecard = Template's 12 + Core skills
-- [ ] Instructions: session goals + NUMBERS TO CAPTURE (from OB KSIs) + OB link
+- [ ] Core-skills section placed per template: v1 after Attitude, before Education; v2 in the empty slot after Seniority (4), before Attitude (6), with the 🧩 questions taken from the role's portal kit (authored only if the portal has none, with the user's OK); scorecard = the template's 12 picks
+- [ ] Instructions: v1 = session goals + NUMBERS TO CAPTURE (from OB KSIs) + OB link; v2 = the template skeleton with every {placeholder} filled
 - [ ] ⚡ Kit attached to the job AND the smart-schedule trigger points at it
 - [ ] Notion backup page inside the role's page (🧩 full scripts + ★ restore-by-id table)
 - [ ] No "lean"/simplified format regardless of role type; old kits untouched/hidden, never deleted
