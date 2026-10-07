@@ -16,6 +16,7 @@ When one session executes many phases inline, the skill instructions read early 
 ## The pipeline
 ```
 0. Intake        confirm role, client, geography, role type (LATAM-remote | US-field | other), what exists already
+                 + ask which interview-kit base: Template (v1) or Template v2 — pass the answer into the phase 3 prompt (the subagent cannot ask)
 1. opp-brief     → OB inside the role's Notion page          [gate: checklist A]
    ⏸ USER GATE: Tania approves the OB (assumptions resolved) before anything reads from it
 2. atomic-jd     → JD + structured block                     [gate: checklist B]

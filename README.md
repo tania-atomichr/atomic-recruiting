@@ -83,9 +83,9 @@ Checks your connections (API key, recruiter email, Notion, Gmail, Chrome), helps
 - **Know:** unlike the JD it names the company, and it reads the OB first when one exists. It asks up to five questions (comp and setup first). If you say "go ahead", it uses visible `[placeholders]` plus an "Information to confirm" list, and it labels unvalidated 30/60/90 milestones as proposed. Same voice rules as the JD (no em dashes, no semicolons, contractions). A short job ad is still `atomic-jd`.
 
 ### 3. interview-kit — the interview kit
-- **What it does:** authors only the role-specific Core Skills questions (canonical ★ questions are reused by id, never rewritten), publishes the kit page inside the role's Notion page, and builds the kit in Teamtailor from the Template.
-- **Say:** "build the interview kit for [role]".
-- **Know:** kit naming is `{Role} IK | {Client}`. The kit instructions carry the session goals and the NUMBERS TO CAPTURE from the OB's success indicators.
+- **What it does:** authors only the role-specific Core Skills questions (canonical ★ questions are reused by id, never rewritten), publishes the kit page inside the role's Notion page, and builds the kit in Teamtailor from the base kit you choose: **Template** (v1) or **Template v2**. It asks which if you don't say.
+- **Say:** "build the interview kit for [role]" (add "on Template v2" or "on Template 1" to skip the question).
+- **Know:** kit naming is `{Role} IK | {Client}`. The kit instructions carry the session goals and the NUMBERS TO CAPTURE from the OB's success indicators. On Template v2 the role questions (section 5) are taken from the role's interview kit in the portal, so the Teamtailor kit matches the web app; it only writes its own if the portal has none.
 
 ### 4. application-questions — the apply-form questions
 - **What it does:** attaches the 6 canonical ✪ questions (location, English, salary, availability mandatory; interest, show-your-work optional) and authors **2 role-specific ⌖ reality-checks**.

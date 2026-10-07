@@ -27,6 +27,25 @@ Tania's rule: **all questions have a skill/trait assigned** (verified 0 untagged
 Canonical skill map: Intro/Opening→23515 · story questions+Transitions→20790 · Scope questions→67335 · Signals/Attitude/Culture→67332 · domains+Tech Stack+Bonus→67334 · Curiosity/AI→23520 · Motivation+Job Fit→67336 · Availability→67341 · Wrap-Up+verdict+Overall Impressions→41247 · Academic→67340 Education · industry/company-context (82966/63978/67862)→67338 Domain.
 New role questions: create WITH `scorecard_criterium_id` (67334 mostly) — never leave a question untagged. **Within-section display order = the competence entry's `children` array (`children:[{id:'<qid>',type:'question'},…]`) — picked_questions row_order is IGNORED for section members** (verified 2026-07-07). When a section holds multiple questions in a required order (Conclusion: Wrap-Up → Overall Impressions where present → Final Recommendation; Core skills: the domains in call order), set children explicitly. After building, verify order by reading the edit page's Questions section (search AFTER the "Add the questions you want to ask" anchor — the skill chips at the top false-positive naive text searches).
 
+## Template v2 (kit named exactly "Template v2") — the second base kit
+Used when the recruiter picks v2 in SKILL.md Step 0. Same rules (reuse by id, read the kit LIVE, never regenerate), different canonicals and a different slot for Core skills. The flow, one question per section, numbered in the titles:
+1. `★ 1. Opening | v2` (Communication 23515)
+2. `★ 2. The story | v2` (Trajectory 20790)
+3. `★ 3. The company | v2` (Domain 67338)
+3b. `★ 3b. Kinds of companies | v2 | Optional ✳️` (Environment 67337)
+4. `★ 4. Your work there | v2` (Seniority 67335)
+5. **← the role's 🧩 questions (Core skills 67334).** The template carries this section EMPTY in its `competence_order`; there is no ★ 5 on purpose. On v2 the questions come from the portal (SKILL.md Part 2-v2).
+6. `★ 6. What you're known for | v2 | Optional ✳️` (Attitude 67332)
+7. `★ 7. How you learned | v2 | Optional ✳️` (Education 67340)
+8. `★ 8. Curiosity & AI | v2` (AI & Tech 23520)
+9. `★ 9. What you're looking for | v2` (Motivation 67336)
+10. `★ 10. Practical details | v2` (Logistics 67341)
+11. `★ 11. Wrap-up | v2`, then `★ Final Recommendation` (#82972) — both children of Conclusion 41247, in that order.
+
+**v2 layout recipe:** copy the template's live `competence_order` as is and fill the `children` of the existing `{67334, type:'competence'}` entry with the 🧩 question ids in portal theme order. Do not move any section and do not add v1 canonicals. Scorecard picks = the same 12 as v1.
+
+**v2 instructions box:** the template's `instructions` HTML is a fill-in skeleton (`{Role} | {Client}`, Role details, Key screening points, Numbers to capture, How to run the role questions, Legend, Links). Keep its headings and order, replace every `{placeholder}`, and send it at CREATE time. The pay range line stays marked "for you only".
+
 ## Scorecard picks (Skills & traits selector)
 The Template and every new kit select **all 11 areas + Conclusion = 12 picks** (every area visible and ratable — verified across all 38 live kits 2026-07-07). Education now has a dedicated question: **Education & Learning (#212256)**, placed before Curiosity/AI. It exists because the fit-score rubric grades Education on **field relevance + required certifications** — evidence that won't surface reliably from the story alone — plus the keep-learning read. Environment (#212257) and Domain (#212258) got the same treatment 2026-07-07 after reading their rubric dimensions: Environment grades product-vs-agency-vs-enterprise on RECENT roles; Domain grades business context (customer + how the money flows). Every area now has a dedicated question except Communication (the call itself is the test) and Core skills (the role's Tailored Domains).
 

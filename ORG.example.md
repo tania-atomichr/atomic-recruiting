@@ -20,6 +20,7 @@ also instance-specific: treat them as the PATTERN and map your own equivalents.
 | TT_COMPANY_ID | In any Teamtailor URL: `app.teamtailor.com/companies/<THIS>/...` |
 | TT_TEMPLATE_JOB_ID | Build a "golden template" job carrying your standard stages, triggers, and application questions; use its id |
 | TT_TEMPLATE_KIT_ID | Your canonical interview-kit template's id (Settings → Interview kits) |
+| TT_TEMPLATE_V2_KIT_ID | Optional. Id of your second base kit, named exactly "Template v2"; if unset the skill finds it by name |
 | NOTION_OPEN_ROLES_DB | Your roles database id in Notion |
 | NOTION_OPEN_ROLES_DATA_SOURCE | Its data source id (`collection://<THIS>`) |
 | NOTION_OB_TEMPLATE | Your Opportunity Brief template page id |
