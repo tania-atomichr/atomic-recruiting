@@ -1,13 +1,26 @@
 ---
 name: opp-brief
-description: Write a role's Opportunity Brief (OB) and create it INSIDE the role's page in the Notion Open Roles DB. The OB is the candidate-facing brief that NAMES the client (unlike the anonymous public JD) — it is the single source of truth every downstream skill reads (atomic-jd anonymizes it, interview-kit derives questions from it, application-questions derives the ⌖ reality-checks, tt-post-job links it in the Scheduled-stage message). Use for role intake: when a new role lands, after a discovery/intake call, or when the user asks to write an OB / opp brief / opportunity brief / role brief for a role. Takes intake notes, a transcript, or a rough description plus company context; asks for missing critical facts instead of inventing them.
+description: Fill a role's Opportunity Brief (OB) IN THE CLIENT PORTAL, through the portal connector (get_brief / draft_brief / fill_brief / set_market_insight). The OB is the candidate page the portal serves at /ob/<token>; it is the one source every downstream skill and the sourcing app read. Use for role intake: when a new role lands, after a discovery/intake call, or when the user asks to write an OB / opp brief / opportunity brief / role brief for a role. Takes intake notes, a transcript, or a rough description plus company context; asks for missing critical facts instead of inventing them. Never writes to Notion.
 ---
 
 > **Token resolution:** ids/urls written as `{{TOKEN}}` are org config, resolved from `~/.claude/atomic-recruiting-org.md` (created by atomic-onboarding's "set me up"; external users: see ORG.example.md in the repo). Read that file once at the start and substitute values before using any URL or id. If it's missing, run onboarding first.
 
-# opp-brief — the Opportunity Brief, written into the role's Notion page
+## Where the OB lives now (2026-10-27): the client portal, nowhere else
 
-**Drift guard:** `references/format.md` (the 8-section template) and `references/notion-write.md` (the share-structure hard rule: the OB child page is the ONLY candidate-facing page; the IK never nests inside it) must be read in THIS conversation before writing. If they aren't in your recent context, read them now.
+The portal is the one writer of every search document. This skill no longer creates pages in Notion; `references/notion-write.md` is retired. Work through the **Client Portal connector** (`mcp__Client_Portal_new__*`), as the recruiter:
+
+1. **Find the search**: `search` / `list_roles`, then `get_role` (requirements = `brief`, the client's approval flag, the ideal candidate, criteria) and `get_client` (the company page and its research).
+2. **Put the sources on the search**, never in a document: the call or intake notes go through `attach_transcript` / `edit_role` (the role's `brief` box holds the client's JD or requirements). The portal's company research runs on its own once the client is opened; do not research the company again.
+3. **Draft**: `draft_brief` writes the eight sections from the requirements, the call, the research and the ideal candidate profile. Then `get_brief` and read it with `references/format.md` beside you. Fix what is wrong with `fill_brief` (one section at a time, preview first, then `preview=false`).
+4. **Pay**: the OB shows the **Atomic market insight only** (`set_market_insight`), never the client's budget. Hourly for LATAM contractor searches. The old rule "states real comp guidance" is gone: the portal's rule wins.
+5. **Open questions** for the client are the brief's own "What we still need from <client>" list in the portal; answer them there or let the AM send them. Never invent comp, manager, metrics, team size or interview steps.
+6. **Return** the brief's state from `get_brief` and the live candidate-page links from `get_role.candidate_page_links` (a sourcing link is made for each sourcer automatically; the Share step on the brief page makes an applicants link). Downstream: atomic-jd, interview-kit, application-questions and tt-post-job all read the portal, not this conversation.
+
+Everything below about the format and the voice still applies; everything about Notion does not.
+
+# opp-brief — the Opportunity Brief, filled in the client portal
+
+**Drift guard:** `references/format.md` (the 8-section template) must be read in THIS conversation before writing. If they aren't in your recent context, read them now.
 
 The OB is the document a candidate reads before their screening call, and the document every other skill in the pipeline treats as ground truth. It names the client, states real comp guidance, and is honest about constraints. Write it once, well, in the role's page — everything else projects from it.
 
@@ -30,11 +43,8 @@ House conventions that make it an Atomic OB (all in `references/format.md`):
 ## Voice
 Clear, direct, factual, candidate-friendly (the template's own tone checklist): explain **why the role exists** before listing tasks; concrete outcomes and examples; no hype ("rockstar", "fast-paced"); honest about constraints. Bold the key terms candidates scan for (hours, pay cadence, PTO, tools, reporting line). No em or en dashes — commas, colons, parentheses. Simple English.
 
-## Where it goes in Notion (exact write path in `references/notion-write.md`)
-**Always inside the role's page** in the Open Roles DB — never the Document Hub, never a loose page:
-1. Open the role's page and find its **Tasks Tracker inline database** (the first inline DB; per-role data-source id; title property "Task name"). Create the OB as a page there titled **"Opp Brief - {Role} at {Company}"**.
-2. **Fresh "0. New" role pages may have no tracker yet** — fall back to a direct **child page of the role page** (the live UX/UI OB is exactly this), same content.
-3. Return the OB URL. Downstream skills (tt-post-job's Scheduled message, interview-kit's instructions) link to it.
+## Where it goes: the client portal, nowhere else
+The brief lives on the search in the portal (`get_brief` / `fill_brief`); the candidate reads it at the `/ob/<token>` links in `get_role.candidate_page_links`. Return those links. Downstream skills (tt-post-job's Scheduled message, interview-kit's instructions) link the portal page, never a Notion page.
 
 ## After writing
 - Report: the OB URL, the facts you were given vs. researched vs. still open for review.

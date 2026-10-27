@@ -1,9 +1,18 @@
 ---
 name: interview-kit
-description: Build a role's interview kit end to end — analyze the JD/Opportunity Brief, author ONLY the role-specific Core Skills questions (reusing existing bank questions when an equivalent exists; everything canonical is reused by id), publish the kit page inside the role's page in the Notion Open Roles DB, and create the kit in Teamtailor starting from one of the two base kits, "Template" (v1) or "Template v2" (the user chooses). Use when the user wants an interview kit, screening script, discovery questions, or an interview guide for a role. Produces content AND does the Notion + Teamtailor writes.
+description: Build a role's interview kit in Teamtailor from the questions the CLIENT PORTAL already drew (get_role.interview_kit): reuse the canonical questions by id from the base kit the user chooses ("Template" v1 or "Template v2"), add the portal's role-specific themes word for word, and create the kit in Teamtailor. Use when the user wants an interview kit, screening script, discovery questions, or an interview guide for a role in Teamtailor. Never writes to Notion; the kit's text lives in the portal.
 ---
 
 > **Token resolution:** ids/urls written as `{{TOKEN}}` are org config, resolved from `~/.claude/atomic-recruiting-org.md` (created by atomic-onboarding's "set me up"; external users: see ORG.example.md in the repo). Read that file once at the start and substitute values before using any URL or id. If it's missing, run onboarding first.
+
+## The questions come from the portal (2026-10-27)
+
+The portal draws the role-specific themes from the search's criteria (must-haves first) and the team edits them there; `get_role.interview_kit` carries `themes` (each theme with its questions), `vintage` (current | stale) and `stale_reason`. This skill no longer authors tailored questions for either template and no longer publishes a Notion backup page (Part 3 is retired; the portal page is the record). Step 0 (v1 or v2) still applies.
+
+1. `get_role` → `interview_kit`. If `themes` is empty, press "Draw the kit" on the search's Docs tab (`team_action`) or call `draw_interview_kit`; if `vintage` is `stale`, redraw first (it says why). To reword a question, use `edit_interview_kit` so the portal, the Docs panel and this kit agree.
+2. Part 1 (information goals) is a sanity read only: check the portal's themes cover the goals; a missing goal is fixed with `edit_interview_kit`, never hand-composed here. Part 2 / Part 2-v2 reduce to "take the portal's kit".
+3. Part 4 (build in Teamtailor, `references/tt-build.md`) is unchanged: copy the chosen base kit, reuse canonicals by id, create the portal's questions as bank questions tagged with the client and role, attach them under the right skill. The kit's `instructions` link the portal's candidate page (`get_role.candidate_page_links`, the applicants link if there is one, else the newest sourcing link) instead of a Notion OB or kit page.
+4. Report the TT kit id; the portal page already holds the words.
 
 # interview-kit — from role brief to live Teamtailor kit
 

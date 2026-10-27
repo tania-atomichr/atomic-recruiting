@@ -47,10 +47,10 @@ This repo contains **no client names, no staff names, and no org identifiers**: 
 ## The golden path: a new role, end to end
 
 ```
-1. opp-brief             intake call → Opportunity Brief on the role's Notion page
+1. opp-brief             intake call → Opportunity Brief filled in the client portal
    (role-page            optional: OB → full candidate landing-page copy)
 2. atomic-jd             OB → public, client-anonymous JD
-3. interview-kit         OB → interview kit in Notion + Teamtailor
+3. interview-kit         portal's kit → interview kit in Teamtailor
 4. application-questions 6 standard questions + 2 role reality-checks
 5. tt-post-job           everything → fully configured DRAFT job in TT
 6. screened-candidate-search   (optional) seed the job with ~5 vetted Sourced candidates
@@ -120,6 +120,9 @@ Paste an email you received (from a candidate, hiring manager, or client) and it
 Direct Teamtailor questions and lookups ("how many candidates do we have?", "list the open jobs"). Every other skill uses it under the hood.
 
 ---
+
+## 2026-10-27 (v1.12.0): the client portal is the one writer
+Every search document (requirements, Opportunity Brief, JD, interview kit, application questions, fit scores) is written and kept in the client portal. The skills read it through the Client Portal connector (`get_role`, `get_brief`, `get_role.interview_kit`, `get_role.application_questions`, `get_role.job_description`, `get_role.candidate_page_links`) and do the Teamtailor writes the portal cannot (kits, questions, template copy need a logged-in browser). Notion is no longer used anywhere in the pipeline; each skill's "(2026-10-27)" block says what it reads now, and the older text below it is kept for the format and the voice only.
 
 ## Guardrails (why you can trust it)
 

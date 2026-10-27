@@ -1,6 +1,6 @@
 ---
 name: candidate-review-to-client
-description: >-
+description: End-to-end pipeline for taking screened candidates in a Teamtailor review stage and packaging them for a client IN THE CLIENT PORTAL: create each candidate on the search, attach the TT transcript + CV, draft the profile (draft_profile), score (score_candidate), publish to the client (publish_candidate), and draft the Slack message with the portal's links. Use whenever the user wants to share candidates with a client or hiring manager, prep the review-stage candidates, or shortlist for a role.
   End-to-end pipeline for taking screened candidates sitting in a Teamtailor review stage and
   packaging them to send to a client: pull each candidate's interview transcript + CV, write
   client-facing summaries into their TT Resume-Summary field, score and rank them against the
@@ -15,6 +15,17 @@ description: >-
 ---
 
 > **Token resolution:** ids/urls written as `{{TOKEN}}` are org config, resolved from `~/.claude/atomic-recruiting-org.md` (created by atomic-onboarding's "set me up"; external users: see ORG.example.md in the repo). Read that file once at the start and substitute values before using any URL or id. If it's missing, run onboarding first.
+
+## The portal is the package (2026-10-27)
+
+Teamtailor share links and the Resume Summary field are no longer what the client gets. The client reads the candidate in the portal (profile left, activity panel right, Yes / Maybe / Not a fit). So:
+
+1. Pull transcript + CV per candidate from Teamtailor as before.
+2. Per candidate: `create_candidate` on the search (or find them with `list_candidates`), `attach_transcript`, `draft_profile`, `score_candidate`. Read the profile and the score back; fix wording on the profile's edit page.
+3. `publish_candidate` (preview, then `preview=false`) makes them visible to the client. This is the one step that reaches a client: show the user the list and get a yes before `preview=false`.
+4. The Slack message links the portal's candidate pages (from `get_candidate`), not TT share pages. The spam / fake-profile tags on TT are still read before anyone is created.
+
+candidate-summary and candidate-fit-score below now describe the portal calls; the orchestration here is what to run and in what order.
 
 # Candidate review → client hand-off
 
