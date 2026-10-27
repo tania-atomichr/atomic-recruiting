@@ -1,9 +1,13 @@
 ---
 name: application-questions
-description: Author a role's Teamtailor APPLICATION-FORM questions — reuse the 6 canonical ✪ questions by id (never rewritten) and author 2 role-specific ⌖ "reality-check" questions from the brief's core craft (each proving a different facet), then write them to the job via the internal TT API. A reality-check is one tight, open-text "what did you last use / ship / run" that a real practitioner answers in two seconds, a faker or bot can't produce, and a non-fit can honestly opt out of. Use when setting up or fixing the application/screening questions on a Teamtailor job, or when a poster needs the per-role question set. This is the APPLICATION-FORM sibling of interview-kit (which builds the interview kit) — for the short apply form, use THIS.
+description: Write a role's Teamtailor APPLICATION-FORM questions: reuse the 6 canonical ✪ questions by id (never rewritten) and attach the 2 role-specific ⌖ reality-checks the CLIENT PORTAL already drew for the search (get_role.application_questions), then write them to the job via the internal TT API. Use when setting up or fixing the application/screening questions on a Teamtailor job. Never writes to Notion.
 ---
 
 > **Token resolution:** ids/urls written as `{{TOKEN}}` are org config, resolved from `~/.claude/atomic-recruiting-org.md` (created by atomic-onboarding's "set me up"; external users: see ORG.example.md in the repo). Read that file once at the start and substitute values before using any URL or id. If it's missing, run onboarding first.
+
+## The ⌖ questions come from the portal (2026-10-27)
+
+The portal draws the two reality-checks from the requirements and the criteria (`get_role.application_questions`, with their vintage). This skill no longer authors them from a Notion OB or a pasted brief: read them, check them against `references/role-questions.md` (two facets, noun-or-number answer, an honest out), fix a weak one by redrawing on the search's Docs tab or editing it there, and write the set to Teamtailor exactly as the portal has it. If the portal has none yet, press "Draw" on the Docs tab (`team_action`) and read again.
 
 # application-questions — the apply-form question set for a role
 

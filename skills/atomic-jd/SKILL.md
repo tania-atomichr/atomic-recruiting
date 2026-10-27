@@ -1,9 +1,20 @@
 ---
 name: atomic-jd
-description: Draft a public, client-anonymous job description in the atomic✳HR house style and voice from an Opportunity Brief, a Notion Open Roles page, or a rough brief. Produces both a review-ready JD and a structured block a poster skill can push to Teamtailor, LinkedIn, or job boards. Use when the user wants to write, draft, create, or rework a JD / job post / job ad for a role, or turn an OB or intake brief into a posting. Content only — it does not post anywhere.
+description: Review and hand off a role's public, client-anonymous job description in the atomic✳HR house style. The PORTAL writes the JD from the approved Opportunity Brief (get_role.job_description); this skill reads it, checks it against the voice and format rules, fixes it on the portal's JD page, and returns the structured block a poster pushes to Teamtailor. Use when the user wants a JD / job post / job ad for a role reviewed, reworked or handed to the poster. Content only; it does not post anywhere and never writes to Notion.
 ---
 
 > **Token resolution:** ids/urls written as `{{TOKEN}}` are org config, resolved from `~/.claude/atomic-recruiting-org.md` (created by atomic-onboarding's "set me up"; external users: see ORG.example.md in the repo). Read that file once at the start and substitute values before using any URL or id. If it's missing, run onboarding first.
+
+## The JD comes from the portal (2026-10-27)
+
+Do not draft a second posting. The portal writes one JD per search from the brief the client approved (`app/jd_doc.py`, anonymous by construction) and keeps it with the version it was written from.
+
+1. `get_role` → `job_description` {title, pitch, body_md, body_html, written_from_version, tt_job_id, edit_url}. If it is `null`, the posting has not been generated yet: ask the AM to press "Write the posting" on the brief page (it needs the client's approval of the requirements), or press it yourself with `team_action` on `/team/briefs/<id>/jd`. Do not write one from scratch here.
+2. Read it against `references/voice.md`, `references/format.md` and the banned-pattern scan below. Keep the truthful metrics; never name the client.
+3. Fix on the portal, not in chat: `read_team_page` the `edit_url`, then `team_action` its save form with the corrected title / pitch / body. The portal keeps the chain (which brief version it came from).
+4. Return the structured block below filled from the portal's JD, so tt-post-job pastes the same words. `internal_name` may name the client.
+
+A Notion page is never an input any more. A pasted brief is only a fallback for a role that is not in the portal yet; create it there first (`create_role`) and come back.
 
 # atomic-jd — write a job description in the atomic✳HR house style
 

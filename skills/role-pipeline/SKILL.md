@@ -1,9 +1,26 @@
 ---
 name: role-pipeline
-description: Orchestrate the full new-role pipeline end to end (OB → JD → interview kit → application questions → Teamtailor posting → optional candidate injection) by delegating EACH phase to a fresh subagent that reads that phase's skill first, then auditing every artifact against the skill's Definition-of-Done checklist before the pipeline advances. Use when the user wants a role done "end to end", "full cycle", "post the role and set up everything", or names several phases at once. This exists because inline multi-step execution drifts from the skills; orchestrated phases with checklist gates do not.
+description: Orchestrate the full new-role pipeline end to end (OB in the portal → portal JD reviewed → interview kit in TT → application questions on the job → Teamtailor posting → optional candidate injection) by delegating EACH phase to a fresh subagent that reads that phase's skill first, then auditing every artifact against the skill's checklist before the pipeline advances. Use when the user wants a role done "end to end", "full cycle", "post the role and set up everything", or names several phases at once.
 ---
 
 > **Token resolution:** ids/urls written as `{{TOKEN}}` are org config, resolved from `~/.claude/atomic-recruiting-org.md` (created by atomic-onboarding's "set me up"). Read it once at the start.
+
+## The pipeline reads the portal (2026-10-27)
+
+Every phase takes its input from the Client Portal connector and writes its text there; Teamtailor is where the job, the kit and the form questions are delivered. There is no Notion step in any phase and no artifact is written in chat:
+
+```
+0. Intake        the search exists in the portal (create_role), requirements on it, client approval on the requirements
+1. opp-brief     → OB filled in the portal (get_brief)                 [gate: checklist A, read from get_brief]
+   ⏸ USER GATE: Tania approves the OB in the portal before anything reads from it
+2. atomic-jd     → the portal's JD reviewed (get_role.job_description) [gate: checklist B]
+3. interview-kit → TT kit from get_role.interview_kit                   [gate: checklist C, no Notion line]
+4. application-questions → 6 ✪ + the portal's 2 ⌖ on the job           [gate: checklist D]
+5. tt-post-job   → DRAFT with the portal JD + candidate-page link        [gate: checklist E]
+6. (on request) screened-candidate-search → judged inject               [gate: checklist F]
+7. Final audit: re-GET everything (portal and TT), one report
+```
+A checklist line that asks for a Notion URL or page is read as "the portal holds it": PASS when `get_brief` / `get_role` return it.
 
 # role-pipeline — phase-isolated orchestration with checklist gates
 
