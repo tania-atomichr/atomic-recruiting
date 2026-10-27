@@ -1,7 +1,15 @@
 ---
 name: candidate-fit-score
-description: Score a candidate against a role brief using atomic-HR's exact 7-dimension fit rubric (core skills, seniority, environment, domain, communication, education, trajectory), returning a 0-100 match score, a MET/PARTIAL/UNMET breakdown, gaps, and openness-to-change signals. Use when the user shares a candidate profile/CV/LinkedIn text plus a job brief and asks to score, evaluate, rank, or assess fit — or wants to know why a candidate does or doesn't fit a role.
+description: Read a candidate's fit against a search from the CLIENT PORTAL (score_candidate / score_search), which runs atomic-HR's exact 7-dimension rubric against the search's criteria and scoring frame, returning the 0-100 score, MET/PARTIAL/UNMET breakdown and gaps. Use when the user asks to score, evaluate, rank, or assess fit, or why a candidate does or doesn't fit a role. RUBRIC.md stays here to explain a score, never to compute one.
 ---
+
+## One scorer (2026-10-27)
+
+The portal, the sourcing app (over the bridge) and this skill used to run the same rubric in three places and could disagree on one person. Now the portal scores and the others read:
+
+- A candidate on a portal search: `score_candidate` (one) or `score_search` (everyone on it). Report the number, the seven verdicts and the gaps as returned. Never adjust or re-derive them.
+- A candidate not in the portal yet (a pasted CV): `create_candidate` on the search, `attach_transcript` if there is one, then `score_candidate`. Do not score by hand against a pasted brief.
+- `RUBRIC.md` is the explanation of how the portal scores, for when the user asks why; it is no longer an instruction to compute a score here.
 
 # Candidate Fit Score (atomic-HR 7-dimension rubric)
 

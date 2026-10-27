@@ -1,9 +1,16 @@
 ---
 name: tt-post-job
-description: Post a role to Teamtailor as a fully-configured DRAFT, autonomously carrying the Atomic pipeline. Takes the atomic-jd structured block (title, pitch, body_html, hints) plus the role's client, recruiter, and interview kit, and builds a complete TT job by COPYING the "Atomic Template" job via the internal `new_from_template` endpoint (inheriting stages, automation, questions, hero image, videos, reply/reject emails, and hiring team in one call), then applying per-role edits: JD body, Client, recruiter, salary range, tailored locations, role-corrected trigger texts, kit, and ⌖ questions. Leaves it as a draft for review, never publishes. Use after atomic-jd (and optionally application-questions + interview-kit) when the user wants a role actually posted to / set up in Teamtailor.
+description: Post a role to Teamtailor as a fully-configured DRAFT by copying the "Atomic Template" job (internal new_from_template endpoint) and applying per-role edits: the CLIENT PORTAL's JD (get_role.job_description), Client, recruiter, salary range, tailored locations, role-corrected trigger texts, the kit, the ⌖ questions, and the portal's candidate-page link in the Scheduled-stage message. Leaves it as a draft for review, never publishes. Use when the user wants a role actually posted to / set up in Teamtailor.
 ---
 
 > **Token resolution:** ids/urls written as `{{TOKEN}}` are org config, resolved from `~/.claude/atomic-recruiting-org.md` (created by atomic-onboarding's "set me up"; external users: see ORG.example.md in the repo). Read that file once at the start and substitute values before using any URL or id. If it's missing, run onboarding first.
+
+## What it reads now (2026-10-27): the portal, not a conversation
+
+- **The JD**: `get_role.job_description` (title, pitch ≤ 200, body_html, internal name from the client's name). If `null`, stop: the portal has not written the posting (it needs the client's approval of the requirements). Never paste a JD written in chat.
+- **The candidate-page link for the Scheduled-stage message**: `get_role.candidate_page_links`, the `applicants` link if there is one, else the newest `sourcing` link. The old rule "embed the role's Notion OB child page link, shared to web" is gone; the portal page needs no sharing step.
+- **The kit and the ⌖ questions**: what interview-kit and application-questions built from the portal's words.
+- **After the job is created**: record the Teamtailor job id on the search with `edit_role` (tt_job_id) so the portal syncs candidates and the JD row shows it as posted.
 
 # tt-post-job — post a role to Teamtailor as a configured draft
 
