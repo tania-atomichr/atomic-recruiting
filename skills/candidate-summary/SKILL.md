@@ -1,7 +1,18 @@
 ---
 name: candidate-summary
-description: Generate client-facing candidate summaries from a Teamtailor interview transcript + CV and write them into the candidate's Resume → Summary field via the TT API. Use when the user shares Teamtailor candidate share links (tt.na.teamtailor.com/shares/...) or candidate IDs and asks to write, generate, or enrich candidate summaries.
+description: Write a candidate's client-facing profile IN THE CLIENT PORTAL from the Teamtailor interview transcript + CV (attach_transcript, then draft_profile), instead of a second summary in Teamtailor's Resume Summary field. Use when the user shares Teamtailor candidate share links (tt.na.teamtailor.com/shares/...) or candidate IDs and asks to write, generate, or enrich candidate summaries.
 ---
+
+## One summary, in the portal (2026-10-27)
+
+The portal's candidate profile is the document the client reads; Teamtailor's Resume Summary was a second copy of the same words. From now on:
+
+1. Pull the transcript and CV as before (the share page; `scripts/tt_summary.py` still extracts them).
+2. Find or create the candidate on the search in the portal (`list_candidates` / `create_candidate`), then `attach_transcript` with the transcript text and `draft_profile` (preview, then `preview=false`). The portal writes the nine profile sections in the house format, from the transcript, the CV and the search's criteria.
+3. Review the draft on the profile's edit page (`/team/submissions/<id>/profile`, via `read_team_page`) and fix wording there.
+4. Do not write the Resume Summary field in Teamtailor any more. The portal reads TT's summary as an input when one already exists; it is never the output.
+
+The FORMAT and tone rules below still describe what a good profile reads like; use them to review the portal's draft.
 
 # Candidate Summary (Teamtailor)
 
