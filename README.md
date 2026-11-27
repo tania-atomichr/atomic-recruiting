@@ -111,6 +111,10 @@ Checks your connections (API key, recruiter email, Notion, Gmail, Chrome), helps
 - **candidate-summary** — interview transcript + CV → client-facing summary written into the TT Resume Summary field.
 - **candidate-review-to-client** — the hand-off: everyone in the review stage gets summaries, scores, share links, and a drafted client message. Say: "prep the review candidates for [client]".
 
+### 6b. sourcing-need-calculator — how many more people a search needs
+- **What it does:** explains the sourcing app's funnel math: six stages (To reach out, Reached out, Booked, Client, Offer, Hired), the conversion rates, and why a search says Add ~N, Reach out to N, or Covered. The app computes the live number; this skill explains it, checks it by hand, or estimates a new search.
+- **Say:** "why does this search need 69 more?" · "how many profiles will a new senior search take?"
+
 ### 7b. recruiter-email-reply — draft email replies
 Paste an email you received (from a candidate, hiring manager, or client) and it drafts a warm, natural, low-friction reply in a recruiter's voice. **Say:** "help me reply to this" and paste the email.
 
